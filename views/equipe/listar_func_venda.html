@@ -1,0 +1,72 @@
+{{extend 'layout.html'}}
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div class="container"> <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse" data-target="#navbar10">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbar10">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item"> <a class="nav-link" href="{{=URL('projeto','acesso_geral_projeto', args=projeto.id)}}">Acesso Geral</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="{{=URL('projeto','prestacao_venda', args=projeto.id)}}">Prestação Venda</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="{{=URL('projeto','investimento', args=projeto.id)}}">Investimento</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="{{=URL('projeto','prestacao_cobr', args=projeto.id)}}">Prestação Cobrança</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="{{=URL('projeto','lucros_prej', args=projeto.id)}}">Relatorio Lucros</a> </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+<div class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+		<h3>Lista Funcionarios {{=projeto.nome_chefe}}</h3>
+		<a class="btn btn-secondary btn-block" href="{{=URL('inserir_funcionario', args=projeto.id)}}">Inserir Funcionario</a>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Nome</th>
+                  <th>Função</th>
+                  <th>Salario</th>
+                <th>Vale</th>
+                  <th>Caderno</th>
+                      <th>Saldo</th>
+                  <th>Recebido</th>
+              </tr>
+            </thead>
+            <tbody>
+				{{salario=0.0}}
+                {{vale=0.0}}
+                {{caderno=0.0}}
+                {{rec_chegada=0.0}}
+				{{for row in rows:}}
+              <tr>
+                <th><a href="{{=URL('alterar_funcionaro', args=row.id)}}">{{=row.nome_funcionario}}</a></th>
+				<th>{{=row.funcao}}</th>
+                  <th>{{=row.salario_funcionario}}</th>
+                  <th>{{=row.vale_saida_funcionario}}</th>
+                  <th>{{=row.vale_caderno_funcionario}}</th>
+                  <th>{{=row.salario_funcionario-row.vale_saida_funcionario-row.vale_caderno_funcionario}}</th>
+                  <th>{{=row.valor_recebido_chegada}}</th>
+				{{salario+=row.salario_funcionario}}
+                {{vale+=row.vale_saida_funcionario}}
+                {{caderno+=row.vale_caderno_funcionario}}
+                {{rec_chegada+=row.valor_recebido_chegada}}
+              </tr>
+              {{pass}}
+				 <tr>
+                <th>Total</th>
+                        <th>-></th>
+				<th>{{=salario}}</th>
+                     <th>{{=vale}}</th>
+                     <th>{{=caderno}}</th>
+                     <th>-></th>
+                     <th>{{=rec_chegada}}</th>
+              </tr>
+            </tbody>
+          </table>
+                        {{projeto.total_salario=salario}}
+                        {{projeto.total_vale_saida_funcionario=vale}}
+                        {{projeto.total_vale_caderno_funcionario=caderno}}
+                        {{projeto.total_recebido_chegada_funcionario=rec_chegada}}
+                        {{projeto.update_record()}}
+</div></div></div>

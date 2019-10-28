@@ -1,0 +1,81 @@
+{{extend 'layout.html'}}
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div class="container"> <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse" data-target="#navbar10">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbar10">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item"> <a class="nav-link" href="{{=URL('projeto','acesso_geral_projeto', args=projeto.id)}}">Acesso Geral</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="{{=URL('projeto','prestacao_venda', args=projeto.id)}}">Prestação Venda</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="{{=URL('projeto','investimento', args=projeto.id)}}">Investimento</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="{{=URL('projeto','prestacao_cobr', args=projeto.id)}}">Prestação Cobrança</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="{{=URL('projeto','lucros_prej', args=projeto.id)}}">Relatorio Lucros</a> </li>
+        </ul>
+      </div>
+    </div>
+  </nav><div class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+<h3>Lista Mercadoria de retorno {{=projeto.nome_chefe}}</h3>
+
+  <table class="table table-striped table-borderless">
+            <thead>
+              <tr>
+                <th>Quant</th>
+                <th>Descrição</th>
+                <th>Preço</th>
+                <th>Total</th>
+				 <th>Q. Apro</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+				{{total_preco_retorno=0.0}}
+				{{total_preco_aproveitamento=0.0}}
+				{{quant_retorno=0.0}}
+				{{vc=0.0}}
+				{{vr=0.0}}
+                {{total_custo_retorno=0.0}}
+                {{total_custo_aprov_retorno=0.0}}
+				{{for row in rows:}}
+              <tr>
+
+                <th>{{=row.quant_pcs_retorno}}</th>
+                  <th><a href="{{=URL('alterar_merc_retorno', args=row.id)}}">{{=row.descricao}}</a></th>
+				<th>{{=row.preco_unitario}}</th>
+                  
+                    {{vr=row.quant_pcs_retorno*row.preco_unitario}}
+                  
+				<th>{{=vr}}</th>
+                  
+				<th>{{=row.quant_pcs_aprov_retorno}}</th>
+                  
+                    {{vc=row.quant_pcs_aprov_retorno*row.custo_unitario}}
+                  
+				<th>{{=vc}}</th>
+                    {{custo_ret=(row.quant_pcs_retorno*row.custo_unitario)}}
+                    {{total_custo_retorno+=custo_ret}}
+                    {{total_preco_retorno=total_preco_retorno+vr}}
+                    {{total_preco_aproveitamento=total_preco_aproveitamento+vc}}
+                    {{quant_retorno+=row.quant_pcs_retorno}}
+              </tr>
+              {{pass}}
+				 <tr>
+
+                <th>{{= quant_retorno }}</th>
+				<th>Total</th>
+				<th>--></th>
+				<th>{{=total_preco_retorno}}</th>
+					 <th>--></th>
+				<th>{{=total_preco_aproveitamento}}</th>
+
+              </tr>
+            </tbody>
+          </table>
+                     {{projeto.total_quant_pcs_retorno=quant_retorno}}
+                     {{projeto.total_preco_retorno=total_preco_retorno}}
+                     {{projeto.total_custo_retorno=total_custo_retorno}}
+                     {{projeto.total_custo_aprov_retorno=total_preco_aproveitamento}}
+                        {{projeto.update_record()}}
+</div></div></div>
