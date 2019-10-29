@@ -6,7 +6,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navbar10">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item"> <a class="nav-link" href="{{=URL('acesso_geral_projeto', args=projeto.id)}}">Acesso Geral</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="{{=URL('projeto','acesso_geral_projeto', args=projeto.id)}}">Acesso Geral</a> </li>
           <li class="nav-item"> <a class="nav-link" href="{{=URL('projeto','prestacao_venda', args=projeto.id)}}">Prestação Venda</a> </li>
           <li class="nav-item"> <a class="nav-link" href="{{=URL('projeto','investimento', args=projeto.id)}}">Investimento</a> </li>
           <li class="nav-item"> <a class="nav-link" href="{{=URL('projeto','prestacao_cobr', args=projeto.id)}}">Prestação Cobrança</a> </li>
@@ -15,6 +15,7 @@
       </div>
     </div>
   </nav>
+<br><br>
 
 {{total_retorno=0}}
 {{total_mercadoria=0}}
@@ -23,7 +24,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12 order-md-2">
-          <h4 class="d-flex justify-content-between mb-3"> <span class="text-muted">Prestação de Contas (Venda)</span> </h4>
+          <h4 class="d-flex justify-content-between mb-3"> <span class="text-muted">Prestação de Contas (Venda)</span> </h4><a class="btn btn-primary" href="{{=URL('projeto','alterar_dados_chegada_venda', args=projeto.id)}}">Inserir Dados</a><br><br>
           <ul class="list-group">
             <li class="list-group-item d-flex justify-content-between">
               <div>
@@ -77,7 +78,11 @@
           <ul class="list-group">
             <li class="list-group-item d-flex justify-content-between">
               <div>{{diferenca-=projeto.total_valor_depesa_venda}}
-                <h6 class="my-0"><b>Total Despesa</b></h6> <small class="text-muted">{{=projeto.total_valor_depesa_venda/projeto.total_venda*100}} %</small>
+                  {{perc_despesa=0.0}}
+                  {{if projeto.total_valor_depesa_venda > 0.0:}}
+                   {{perc_despesa=projeto.total_valor_depesa_venda/projeto.total_venda*100}}
+                  {{pass}}
+                <h6 class="my-0"><b>Total Despesa</b></h6> <small class="text-muted">{{=perc_despesa}} %</small>
               </div> <span class="text-muted">R$ {{=projeto.total_valor_depesa_venda}}0</span>
             </li>
             <li class="list-group-item d-flex justify-content-between">
@@ -117,7 +122,10 @@
               </div> <span class="text-muted">R$  {{=projeto.total_venda}}0</span>
             </li>
             <li class="list-group-item d-flex justify-content-between">
-              <div>{{comissaochef=projeto.total_venda*projeto.comissao_chefe_venda/100}}
+                {{comissaochef=0.0}}
+              <div>{{if projeto.total_venda > 0:}}
+                   {{comissaochef=projeto.total_venda*projeto.comissao_chefe_venda/100}}
+                  {{pass}}
                 <h6 class="my-0">Comissão<br></h6> <small class="text-muted">{{=projeto.comissao_chefe_venda}}%</small>
               </div> <span class="text-muted">R$ {{=comissaochef}}0</span>
             </li>
@@ -136,6 +144,7 @@
                 <h6 class="my-0">Saldo do Chefe</h6> <small class="text-muted">Recebimento ou Debito do chefe</small>
               </div> <span class="text-muted">R$ {{=saldochefe}}0</span>
             </li>
+              <li class="list-group-item d-flex justify-content-between"> <span>Dinheiro Recebido </span> <b contenteditable="true">R$ {{=projeto.recebido_chegada_venda}}0</b> </li>
           </ul>
         </div>
       </div>

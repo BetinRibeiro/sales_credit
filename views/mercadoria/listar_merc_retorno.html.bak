@@ -19,7 +19,7 @@
           <div class="col-md-12">
 <h3>Lista Mercadoria de retorno {{=projeto.nome_chefe}}</h3>
 
- <table class="table">
+  <table class="table table-striped table-borderless">
             <thead>
               <tr>
                 <th>Quant</th>

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 def listar_depositos():
-	proj = db.projeto(request.args(0, cast=int))
+	projeto = db.projeto(request.args(0, cast=int))
 	rows = db((db.deposito.projeto == request.args(0, cast=int))).select()
 	return locals()
 

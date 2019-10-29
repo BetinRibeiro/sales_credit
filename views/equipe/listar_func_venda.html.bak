@@ -69,3 +69,4 @@
                         {{projeto.total_vale_caderno_funcionario=caderno}}
                         {{projeto.total_recebido_chegada_funcionario=rec_chegada}}
                         {{projeto.update_record()}}
+</div></div></div>

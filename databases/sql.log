@@ -201,3 +201,11 @@ CREATE TABLE "vendedor"(
     "modified_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  
 );
 success!
+success!
+timestamp: 2019-10-29T02:19:39.786229
+ALTER TABLE "projeto" ADD "recebido_chegada_venda" DOUBLE NOT NULL DEFAULT 0.0;
+success!
+timestamp: 2019-10-29T04:38:20.353201
+ALTER TABLE "projeto" ADD "recebido_chegada_cobrac" DOUBLE NOT NULL DEFAULT 0.0;
+success!
+success!

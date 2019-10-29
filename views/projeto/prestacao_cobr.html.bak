@@ -1,0 +1,153 @@
+{{extend 'layout.html'}}
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div class="container"> <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse" data-target="#navbar10">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbar10">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item"> <a class="nav-link" href="{{=URL('projeto','acesso_geral_projeto', args=projeto.id)}}">Acesso Geral</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="{{=URL('projeto','prestacao_venda', args=projeto.id)}}">Prestação Venda</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="{{=URL('projeto','investimento', args=projeto.id)}}">Investimento</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="{{=URL('projeto','prestacao_cobr', args=projeto.id)}}">Prestação Cobrança</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="{{=URL('projeto','lucros_prej', args=projeto.id)}}">Relatorio Lucros</a> </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+<br><br>
+
+{{total_retorno=0}}
+{{total_mercadoria=0}}
+{{total_venda=0}}
+  <div class="">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 order-md-2">
+          <h4 class="d-flex justify-content-between mb-3"> <span class="text-muted">Prestação de Contas (Cobrança)</span> </h4><a class="btn btn-primary" href="{{=URL('projeto','alterar_dados_cobranca', args=projeto.id)}}">Inserir Dados</a><br><br>
+          <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between">
+              <div>
+                <h6 class="my-0"><b>Total Venda</b></h6> <small class="text-muted">{{=projeto.total_quant_fichas}} Fichas</small>
+              </div> <span class="text-muted">R$ {{=projeto.total_venda}}0</span>
+            </li>
+              
+            <li class="list-group-item d-flex justify-content-between">
+              <div>{{percentual_cob=0.0}}
+                  {{if projeto.total_recebido_cobranca>0:}}
+                  {{percentual_cob=projeto.total_recebido_cobranca/projeto.total_venda*100}}
+                  {{pass}}
+                <h6 class="my-0"><b>Total Recebido</b></h6> <small class="text-muted">{{=percentual_cob}}%</small>
+              </div> <span class="text-muted">R$ {{=projeto.total_recebido_cobranca}}0</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <div>
+                <h6 class="my-0"><b>Total Devolvido</b></h6> <small class="text-muted">Segundo as Fichas</small>
+              </div> <span class="text-muted">R$ {{=projeto.total_devolvido_cobranca}}0</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between bg-light">
+              <div class="my-0">
+                <h6 class="my-0"><b>Total Prego</b></h6> <small>Segundo as Fichas</small>
+              </div> <span class="text-muted">R$ {{=projeto.total_prego_cobranca}}0</span>
+            </li><br>
+            <li class="list-group-item d-flex justify-content-between">
+              <div>
+                <h6 class="my-0">Adiantamento</h6> <small class="text-muted">Dinheiro Emprestado para Cobrança</small>
+                </div> <span class="text-muted">R$ {{=projeto.adiantamento_dinh_cobranca}}0</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <div>
+                <h6 class="my-0">Entradas da Venda</h6> <small class="text-muted">Recebido de entrada da venda</small>
+                  
+              </div> <span class="text-muted">R$ {{=projeto.total_entradas_venda}}0</span>
+            </li>{{dinh_viagem=projeto.total_recebido_cobranca+projeto.adiantamento_dinh_cobranca+projeto.total_entradas_venda}}
+            <li class="list-group-item d-flex justify-content-between"> <span>Total do Dinheiro da Viagem</span> <b contenteditable="true">R$ {{=dinh_viagem}}0</b> </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div><br>
+  <div class="">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 order-md-2">
+          <h4 class="d-flex justify-content-between mb-3"> <span class="text-muted">Valor Apresentado</span> </h4>
+          <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between">
+              <div>
+                  {{diferenca=dinh_viagem}}
+                  
+                  {{perc_desp=0.0}}
+                  {{if projeto.total_valor_depesa_cobranca>0:}}
+                  {{perc_desp=projeto.total_valor_depesa_cobranca/projeto.total_recebido_cobranca*100}}
+                  {{pass}}
+                <h6 class="my-0">Total Despesa</h6> <small class="text-muted">{{=perc_desp}} %</small>
+              </div> <span class="text-muted">R$ {{=projeto.total_valor_depesa_cobranca}}0</span> {{diferenca-=projeto.total_valor_depesa_cobranca}}
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <div>
+                <h6 class="my-0">Depositos</h6> <small class="text-muted">Total dos Depositos</small>
+              </div> <span class="text-muted">R$ {{=projeto.total_valor_deposito}}0</span>{{diferenca-=projeto.total_valor_deposito}}
+            </li>
+           
+            <li class="list-group-item d-flex justify-content-between">
+              <div>
+                <h6 class="my-0">Devolução em Dinheiro</h6> <small class="text-muted">Retorno em dinheiro da Cobrança</small>
+              </div> <span class="text-muted">R$ {{=projeto.devolucao_dinh_cobranca}}0</span>{{diferenca-=projeto.devolucao_dinh_cobranca}}
+            </li>
+            <li class="list-group-item d-flex justify-content-between bg-light">
+              <div class="text-success">
+                <h6 class="my-0"><b class="text-danger">Diferênça da Prestação</b></h6> <small class="text-danger"># Diferênça&nbsp;</small>
+              </div> <span class="text-danger">R$ {{=diferenca}}0</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div><br>
+  <div class="">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 order-md-2">
+          <h4 class="d-flex justify-content-between mb-3"> <span class="text-muted">Saldo Cobrador</span> </h4>
+          <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between">
+              <div>
+                <h6 class="my-0">Total Cobrado</h6> <small class="text-muted">Valor Recebido</small>
+              </div> <span class="text-muted">R$  {{=projeto.total_recebido_cobranca}}0</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+                
+              <div>
+                <h6 class="my-0">Comissão<br></h6> <small class="text-muted">{{=projeto.comissao_cobrador}}%</small>
+                  {{comiss=0.0}}
+                  {{if projeto.total_recebido_cobranca>0:}}
+                  
+                  {{comiss=projeto.total_recebido_cobranca*projeto.comissao_cobrador/100}}
+                 
+                  {{pass}}
+              </div> <span class="text-muted">R$ {{=comiss}}0</span>
+                {{saldo=0.0}}
+                {{saldo=comiss}}
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <div>
+                <h6 class="my-0">Vale</h6> <small class="text-muted">Vale de saida do chefe</small>
+              </div> <span class="text-muted">R$ {{=projeto.vale_cobrador}}0</span> {{saldo=saldo-projeto.vale_cobrador}}
+            </li>
+            <li class="list-group-item d-flex justify-content-between bg-light" >
+              <div class="text-success">
+                <h6 class="my-0"><b class="text-danger">Diferênça da Prestação</b></h6> <small class="text-danger">Dinheiro descontado do Cobrador</small>
+              </div> <span class="text-danger">R$ {{=diferenca}}0</span>{{saldo=saldo-diferenca}}
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <div>
+                <h6 class="my-0">Saldo do CObrador</h6> <small class="text-muted">Recebimento ou Debito do Cobrador</small>
+              </div> <span class="text-muted">R$ {{=saldo}}0</span>
+            </li>
+              <li class="list-group-item d-flex justify-content-between"> <span>Dinheiro Recebido </span> <b contenteditable="true">R$ {{=projeto.recebido_chegada_cobrac}}0</b> </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>

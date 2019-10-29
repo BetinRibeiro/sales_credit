@@ -45,4 +45,4 @@
             </tbody>
           </table>
 {{projeto.total_vale_saida_vendedor=a}}
-                        {{projeto.update_record()}}
+              {{projeto.update_record()}}</div></div></div>

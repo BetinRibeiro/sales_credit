@@ -14,6 +14,7 @@
       </div>
     </div>
   </nav>
+<br><br>
  <div class="" >
     <div class="container">
       <div class="row">
@@ -49,7 +50,6 @@
           <ul class="">
               <a href="{{=URL('deposito','listar_depositos', args=projeto.id)}}" class="text-dark">(4) - Depositos/Cobrador</a><br>
 
-              <a href="#" class="text-dark">Depositos/Cobrador</a><br>
             </ul>
         </div>
       </div>

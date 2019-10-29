@@ -109,6 +109,9 @@ def alterar_vendedor_venda():
 
     db.vendedor.quant_fichas.readable = True
     db.vendedor.quant_fichas.writable = True
+    
+    db.vendedor.valor_receb_chegada_venda.readable = True
+    db.vendedor.valor_receb_chegada_venda.writable = True
 
 
     form = SQLFORM(db.vendedor, request.args(0, cast=int))
@@ -127,7 +130,7 @@ def listar_venda():
     rows = db(db.vendedor.projeto == request.args(0, cast=int)).select()
     return locals()
 def listar_cobranca():
-    proj = db.projeto(request.args(0, cast=int))
+    projeto = db.projeto(request.args(0, cast=int))
     rows = db(db.vendedor.projeto == request.args(0, cast=int)).select()
     return locals()
 
@@ -165,7 +168,7 @@ def alterar_vendedor_cobranca():
     form = SQLFORM(db.vendedor, request.args(0, cast=int))
     if form.process().accepted:
         session.flash = 'atualizada'
-        redirect(URL('listar_vendedor', args=proj.id))
+        redirect(URL('listar_cobranca', args=proj.id))
     elif form.errors:
         response.flash = 'Erros no formulário!'
     else:

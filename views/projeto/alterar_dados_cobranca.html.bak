@@ -1,0 +1,3 @@
+{{extend 'layout.html'}}
+<h1>Este é o template projeto/alterar_dados_cobranca.html</h1>
+{{=BEAUTIFY(response._vars)}}

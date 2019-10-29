@@ -1,28 +1,27 @@
 {{extend 'layout.html'}}
-
-
  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <div class="container"> <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse" data-target="#navbar10">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbar10">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item"> <a class="nav-link" href="{{=URL('projeto','acesso_geral_projeto', args=proj.id)}}">Acesso Geral</a> </li>
-          <li class="nav-item"> <a class="nav-link" href="#">Prestação Venda</a> </li>
-          <li class="nav-item"> <a class="nav-link" href="#">Investimento</a> </li>
-          <li class="nav-item"> <a class="nav-link" href="#">Prestação Cobrança</a> </li>
-          <li class="nav-item"> <a class="nav-link" href="#">Relatorio Lucros</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="{{=URL('projeto','acesso_geral_projeto', args=projeto.id)}}">Acesso Geral</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="{{=URL('projeto','prestacao_venda', args=projeto.id)}}">Prestação Venda</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="{{=URL('projeto','investimento', args=projeto.id)}}">Investimento</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="{{=URL('projeto','prestacao_cobr', args=projeto.id)}}">Prestação Cobrança</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="{{=URL('projeto','lucros_prej', args=projeto.id)}}">Relatorio Lucros</a> </li>
         </ul>
       </div>
     </div>
   </nav>
+<br><br>
 <div class="section">
       <div class="container">
         <div class="row">
           <div class="col-md-12">
-<h2>Despesas Locais {{=proj.nome_chefe}}</h2>
-<a class="btn btn-secondary btn-block" href="{{=URL('deposito','inserir_deposito', args=proj.id)}}">Inserir Deposito</a>
-		
+<h2>Despesas Locais {{=projeto.nome_chefe}}</h2>
+<a class="btn btn-primary" href="{{=URL('deposito','inserir_deposito', args=projeto.id)}}">Inserir Deposito</a>
+		<br><br>
 <table class="table">
             <thead>
               <tr>
@@ -46,3 +45,6 @@
             </tbody>
           </table>
             </div></div></div></div>
+
+ {{projeto.total_valor_deposito=a}}
+                    {{projeto.update_record()}}

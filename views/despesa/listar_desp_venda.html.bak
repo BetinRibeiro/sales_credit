@@ -1,24 +1,28 @@
 {{extend 'layout.html'}}
 
- <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <div class="container"> <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse" data-target="#navbar10">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbar10">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item"> <a class="nav-link" href="{{=URL('projeto','acesso_geral_projeto', args=proj.id)}}">Acesso Geral</a> </li>
-          <li class="nav-item"> <a class="nav-link" href="#">Prestação Venda</a> </li>
-          <li class="nav-item"> <a class="nav-link" href="#">Investimento</a> </li>
-          <li class="nav-item"> <a class="nav-link" href="#">Prestação Cobrança</a> </li>
-          <li class="nav-item"> <a class="nav-link" href="#">Relatorio Lucros</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="{{=URL('acesso_geral_projeto', args=projeto.id)}}">Acesso Geral</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="{{=URL('projeto','prestacao_venda', args=projeto.id)}}">Prestação Venda</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="{{=URL('projeto','investimento', args=projeto.id)}}">Investimento</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="{{=URL('projeto','prestacao_cobr', args=projeto.id)}}">Prestação Cobrança</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="{{=URL('projeto','lucros_prej', args=projeto.id)}}">Relatorio Lucros</a> </li>
         </ul>
       </div>
     </div>
   </nav>
-
+<br><br>
+<div class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
 <h2>Despesas Venda</h2>
-<a class="btn btn-secondary btn-block" href="{{=URL('despesa','inserir_desp_venda', args=proj.id)}}">Inserir Despesas</a>
-		{{=proj.nome}}
+<a class="btn btn-secondary btn-block" href="{{=URL('despesa','inserir_desp_venda', args=projeto.id)}}">Inserir Despesas</a>
+		{{=projeto.nome}}
 <table class="table">
             <thead>
               <tr>
@@ -41,5 +45,6 @@
               </tr>
             </tbody>
           </table>
- {{proj.total_valor_depesa_venda=a}}
-                    {{proj.update_record()}}
+ {{projeto.total_valor_depesa_venda=a}}
+                    {{projeto.update_record()}}
+ </div> </div> </div>

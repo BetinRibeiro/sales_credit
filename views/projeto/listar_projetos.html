@@ -1,10 +1,7 @@
 {{extend 'layout.html'}}
 
 
-    <div class="section">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
+   
             <h3>Lista dos Projetos de Venda</h3>
             <a class="btn btn-secondary btn-success"
             href="{{=URL('criar_projeto')}}">Criar Projeto</a>
@@ -17,6 +14,7 @@
 						<th>Cidade</th>
 						<th>Venda</th>
 						<th>Data Cobrança</th>
+                          <th>#</th>
 					  </tr>
 					</thead>
 					<tbody>
@@ -24,20 +22,12 @@
 					  <tr>
 
 						<td><a href="{{=URL('acesso_geral_projeto', args=row.id)}}">{{=row.nome}}</a></td>
-						  
 						<td>{{=row.nome_chefe}}</td>
-						  
 						<td>{{=row.primeira_cidade}}</td>
-						  
 						<td>R$ {{=row.total_venda}}0</td>
-						  
 						<td>{{=row.data_cobranca}}</td>
 						<td><a href="{{=URL('alterar_projeto', args=row.id)}}">Alterar</a></td>
 					  </tr>
 					  {{pass}}
 					</tbody>
 				  </table>
-          </div>
-        </div>
-      </div>
-    </div>

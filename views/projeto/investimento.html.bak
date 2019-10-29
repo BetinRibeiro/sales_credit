@@ -1,3 +1,81 @@
 {{extend 'layout.html'}}
-<h1>Este é o template projeto/investimento.html</h1>
-{{=BEAUTIFY(response._vars)}}
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div class="container"> <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse" data-target="#navbar10">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbar10">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item"> <a class="nav-link" href="{{=URL('acesso_geral_projeto', args=projeto.id)}}">Acesso Geral</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="{{=URL('projeto','prestacao_venda', args=projeto.id)}}">Prestação Venda</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="{{=URL('projeto','investimento', args=projeto.id)}}">Investimento</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="{{=URL('projeto','prestacao_cobr', args=projeto.id)}}">Prestação Cobrança</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="{{=URL('projeto','lucros_prej', args=projeto.id)}}">Relatorio Lucros</a> </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+<br><br>
+<div class="section">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-6">
+                    <blockquote>
+                      <p>Custos e Comissão</p>
+                      <footer>Valores Fixos&nbsp;</footer>
+                    </blockquote>
+                    <ol>{{investimento=0.0}}
+                      <li>Custo Total da Compra = <b>R$ {{=projeto.total_custo_envio}}0</li>{{investimento+=projeto.total_custo_envio}}</b><hr>
+                      <li>Total Recebido Pelos Vendedores = <b>R$ {{=projeto.total_vale_saida_vendedor+projeto.total_recebido_chegada_venda_vendedor}}0</b>
+                        <br>Vale da Saida  <br>+R$ {{=projeto.total_vale_saida_vendedor}}{{investimento+=projeto.total_vale_saida_vendedor}}0
+                        <br>Recebido na Chegada  <br>+R$ {{=projeto.total_recebido_chegada_venda_vendedor}}0</li>{{investimento+=projeto.total_recebido_chegada_venda_vendedor}}<hr>
+                      
+                      <li>Total Recebido pelos Funcionarios = <b>R$ {{=projeto.total_vale_saida_funcionario+projeto.total_recebido_chegada_funcionario}}0</b>
+                         <br>Vale da Saida  <br>+R$ {{=projeto.total_vale_saida_funcionario}}{{investimento+=projeto.total_vale_saida_funcionario}}0
+                        <br>Recebido na Chegada  <br>+R$ {{=projeto.total_recebido_chegada_funcionario}}0</li>{{investimento+=projeto.total_recebido_chegada_funcionario}}<hr>
+                      <li>Total Recebido Pelo Chefe = <b>R$ {{=projeto.vale_saida_chefe+projeto.recebido_chegada_venda}}0</b>
+                        <br>Vale da Saida  <br>+R$ {{=projeto.vale_saida_chefe}}{{investimento+=projeto.vale_saida_chefe}}0
+                        <br>Recebido na Chegada<br>+R$ {{=projeto.recebido_chegada_venda}}0</li>{{investimento+=projeto.recebido_chegada_venda}}
+                    </ol>
+                      <hr>
+                    <blockquote>
+                      <p>Despesas e Extra</p>
+                      <footer>Valores Variaveis</footer>
+                    </blockquote>
+                    <ol>
+                      <li>Despesa Local = <b>R$ {{=projeto.total_valor_depesa_local}}0</b></li><hr>{{investimento+=projeto.total_valor_depesa_local}}
+                      <li>Dinheiro Emprestado para Venda = <b>R$ {{=projeto.adiantamento_dinh_venda}}0</b></li><hr>{{investimento+=projeto.adiantamento_dinh_venda}}
+                      <li>Total Investido no Projeto = <b>R$ {{=investimento}}0</b>
+                        <br>
+                        <br>
+                        <br>
+                      </li>
+                    </ol>
+                      <hr>
+                  </div>
+                  <div class="col-md-6">
+                    <blockquote>
+                      <p>Valor da Venda  </p>
+                      <footer>Valores Fixos&nbsp;</footer>
+                    </blockquote>
+                    <ol>
+                      <li>Total da Venda = <b>R$ {{=projeto.total_venda}}0</b></li>
+                      <li>Custo Total do Projeto = <b>R$ {{=investimento}}0</b></li>
+                    </ol>
+                      <hr>
+                    <blockquote>
+                      <p>Resultado Previo</p>
+                      <footer>Resultado Previo</footer>
+                    </blockquote>
+                    <ol>
+                      <li>Total Deposito = <b>R$ {{=projeto.total_valor_deposito}}0</b></li>
+                      <li>Lucro&nbsp;= <b>R$ {{=projeto.total_valor_deposito-investimento}}0</b></li>
+                    </ol>
+                      <hr>
+                    <div class="active progress progress-striped">
+                      <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">60% Complete</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>

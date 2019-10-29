@@ -57,7 +57,8 @@
 	                  <th>{{=row.vale_saida}}</th>
 	                <th>{{=row.vale_caderno}}</th> 
 	                  <th>{{=comiss-(row.vale_saida)-(row.vale_caderno)}}</th>
-	
+	<th>{{=row.valor_receb_chegada_venda}}</th>
+                      {{totalrecebido+=row.valor_receb_chegada_venda}}
 	                  {{totalfichas=totalfichas+row.quant_fichas}}
 	                   {{totalentrada=totalentrada+row.entradas_venda}}
 	                {{totalvenda=totalvenda+row.venda}}
@@ -88,3 +89,4 @@
 	{{projeto.total_comis_venda_vendedor=totalcomissao}}
 	{{projeto.total_recebido_chegada_venda_vendedor=totalrecebido}}
 	                        {{projeto.update_record()}}
+</div></div></div>
