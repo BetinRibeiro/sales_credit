@@ -23,7 +23,7 @@
 <h2>Despesas Cobrança {{=projeto.nome_chefe}}</h2>
 <a class="btn btn-secondary btn-block" href="{{=URL('despesa','inserir_desp_cobranca', args=projeto.id)}}">Inserir Despesas</a>
 		
-<table class="table">
+<table class="table table-striped table-borderless">
             <thead>
               <tr>
                 <th>Descrição</th>
@@ -46,3 +46,5 @@
             </tbody>
           </table>
             </div></div></div>
+{{projeto.total_valor_depesa_cobranca=a}}
+                    {{projeto.update_record()}}

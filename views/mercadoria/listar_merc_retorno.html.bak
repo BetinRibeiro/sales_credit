@@ -12,13 +12,14 @@
           <li class="nav-item"> <a class="nav-link" href="{{=URL('projeto','lucros_prej', args=projeto.id)}}">Relatorio Lucros</a> </li>
         </ul>
       </div>
-    </div>
+    </div><br>
   </nav><div class="section">
       <div class="container">
         <div class="row">
           <div class="col-md-12">
-<h3>Lista Mercadoria de retorno {{=projeto.nome_chefe}}</h3>
+<p>Lista Mercadoria de retorno {{=projeto.nome_chefe}}</p>
 
+<div class="table-responsive">
   <table class="table table-striped table-borderless">
             <thead>
               <tr>
@@ -78,4 +79,4 @@
                      {{projeto.total_custo_retorno=total_custo_retorno}}
                      {{projeto.total_custo_aprov_retorno=total_preco_aproveitamento}}
                         {{projeto.update_record()}}
-</div></div></div>
+              </div></div></div></div>

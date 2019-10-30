@@ -21,8 +21,8 @@
 		<h2>Equipe de Vendas {{=projeto.nome_chefe}}</h2>
 		
 		<a class="btn btn-secondary btn-block" href="{{=URL('inserir_vendedor', args=projeto.id)}}">Inserir Vendedor</a>
-
-          <table class="table">
+<div class="table-responsive">
+<table class="table table-striped table-borderless">
             <thead>
               <tr>
                 <th>Nome</th>
@@ -45,4 +45,4 @@
             </tbody>
           </table>
 {{projeto.total_vale_saida_vendedor=a}}
-              {{projeto.update_record()}}</div></div></div>
+    {{projeto.update_record()}}</div></div></div></div>

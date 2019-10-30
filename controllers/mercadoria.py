@@ -47,6 +47,8 @@ def inserir_merc_envio():
 def alterar_merc_enviada():
 	merc = db.mercadoria(request.args(0, cast=int))
 	proj = db.projeto(merc.projeto)
+	db.mercadoria.id.readable = False
+	db.mercadoria.id.writable = False
 	db.mercadoria.projeto.readable = False
 	db.mercadoria.projeto.writable = False
     
@@ -77,6 +79,8 @@ def alterar_merc_enviada():
 def alterar_merc_retorno():
 	merc = db.mercadoria(request.args(0, cast=int))
 	proj = db.projeto(merc.projeto)
+	db.mercadoria.id.readable = False
+	db.mercadoria.id.writable = False
 	db.mercadoria.projeto.readable = False
 	db.mercadoria.projeto.writable = False
     
@@ -114,6 +118,8 @@ def alterar_merc_retorno():
 def alterar_merc_devolucao():
 	merc = db.mercadoria(request.args(0, cast=int))
 	proj = db.projeto(merc.projeto)
+	db.mercadoria.id.readable = False
+	db.mercadoria.id.writable = False
 	db.mercadoria.projeto.readable = False
 	db.mercadoria.projeto.writable = False
     

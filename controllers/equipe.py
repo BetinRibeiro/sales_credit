@@ -13,6 +13,8 @@ def inserir_vendedor():
 
     db.vendedor.comissao_venda.readable = True
     db.vendedor.comissao_venda.writable = True
+    db.vendedor.vale_saida.readable = True
+    db.vendedor.vale_saida.writable = True
     db.vendedor.comissao_cobranca.readable = True
     db.vendedor.comissao_cobranca.writable = True
 
@@ -49,9 +51,13 @@ def inserir_funcionario():
 def alterar_vendedor():
     merc = db.vendedor(request.args(0, cast=int))
     proj = db.projeto(merc.projeto)
+    db.vendedor.id.readable = False
+    db.vendedor.id.writable = False
     db.vendedor.projeto.default = proj.id
     db.vendedor.projeto.readable = False
     db.vendedor.projeto.writable = False
+    db.vendedor.vale_saida.readable = True
+    db.vendedor.vale_saida.writable = True
     db.vendedor.comissao_venda.readable = True
     db.vendedor.comissao_venda.writable = True
     db.vendedor.comissao_venda.readable = True
@@ -73,6 +79,8 @@ def alterar_vendedor():
 def alterar_funcionaro():
     merc = db.funcionario(request.args(0, cast=int))
     proj = db.projeto(merc.projeto)
+    db.vendedor.id.readable = False
+    db.vendedor.id.writable = False
     db.funcionario.projeto.default = proj.id
     db.funcionario.projeto.readable = False
     db.funcionario.projeto.writable = False
@@ -91,6 +99,8 @@ def alterar_funcionaro():
 def alterar_vendedor_venda():
     merc = db.vendedor(request.args(0, cast=int))
     proj = db.projeto(merc.projeto)
+    db.vendedor.id.readable = False
+    db.vendedor.id.writable = False
     db.vendedor.projeto.default = proj.id
     db.vendedor.projeto.readable = False
     db.vendedor.projeto.writable = False
@@ -142,6 +152,8 @@ def listar_func_venda():
 def alterar_vendedor_cobranca():
     merc = db.vendedor(request.args(0, cast=int))
     proj = db.projeto(merc.projeto)
+    db.vendedor.id.readable = False
+    db.vendedor.id.writable = False
     db.vendedor.projeto.default = proj.id
     db.vendedor.projeto.readable = False
     db.vendedor.projeto.writable = False

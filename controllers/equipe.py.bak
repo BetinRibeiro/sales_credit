@@ -13,6 +13,8 @@ def inserir_vendedor():
 
     db.vendedor.comissao_venda.readable = True
     db.vendedor.comissao_venda.writable = True
+    db.vendedor.vale_saida.readable = True
+    db.vendedor.vale_saida.writable = True
     db.vendedor.comissao_cobranca.readable = True
     db.vendedor.comissao_cobranca.writable = True
 
@@ -52,6 +54,8 @@ def alterar_vendedor():
     db.vendedor.projeto.default = proj.id
     db.vendedor.projeto.readable = False
     db.vendedor.projeto.writable = False
+    db.vendedor.vale_saida.readable = True
+    db.vendedor.vale_saida.writable = True
     db.vendedor.comissao_venda.readable = True
     db.vendedor.comissao_venda.writable = True
     db.vendedor.comissao_venda.readable = True

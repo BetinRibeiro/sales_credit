@@ -25,7 +25,7 @@ db.define_table('projeto',
                 #info_chegada_venda
 				Field('devolucao_dinh_cobranca', 'double', label="Devol Dinh Cobrança",notnull=True, default=0),
                 Field('data_chegada_cobrador', 'date', label="Data Chegada Cobrador"),
-				Field('recebido_chegada_cobrac', 'double', label="Recebido na Cobrador",notnull=True, default=0, writable=False, readable=False),
+				Field('recebido_chegada_cobrac', 'double', label="Recebido na Chegadaa Cobrador", writable=False, readable=False,,notnull=True, default=0),
 
 				#informações das despesas (informação vem da tabela de despesas)
 				Field('total_valor_depesa_local', 'double', writable=False, readable=False, notnull=True, default=0),
@@ -66,6 +66,8 @@ db.define_table('projeto',
 				Field('total_devolvido_cobranca', 'double', writable=False, readable=False, notnull=True, default=0),
 				Field('total_prego_cobranca', 'double', writable=False, readable=False, notnull=True, default=0),
 				Field('total_recebido_chegada_cobranca_vendedor', 'double', writable=False, readable=False, notnull=True, default=0),
+                
+                Field('total_venda_vista', 'double', writable=False, readable=False, notnull=True, default=0),
                 auth.signature)
 
 db.define_table('deposito',

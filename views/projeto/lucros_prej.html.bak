@@ -1,3 +1,99 @@
 {{extend 'layout.html'}}
-<h1>Este é o template projeto/lucros_prej.html</h1>
-{{=BEAUTIFY(response._vars)}}
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div class="container"> <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse" data-target="#navbar10">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbar10">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item"> <a class="nav-link" href="{{=URL('acesso_geral_projeto', args=projeto.id)}}">Acesso Geral</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="{{=URL('projeto','prestacao_venda', args=projeto.id)}}">Prestação Venda</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="{{=URL('projeto','investimento', args=projeto.id)}}">Investimento</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="{{=URL('projeto','prestacao_cobr', args=projeto.id)}}">Prestação Cobrança</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="{{=URL('projeto','lucros_prej', args=projeto.id)}}">Relatorio Lucros</a> </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+<br><br>
+<div class="section">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-6">
+                      <p>Demonstrativo Regular em Exercicio</p>
+                      <hr>
+                      
+                      
+                      <p>Entrada em Dinheiro</p>
+                      {{receitas=projeto.total_venda_vista+projeto.total_recebido_cobranca}}
+                      {{lucrobruto=receitas}}
+                    <ol>
+                      <li>(+) Receitas = <b>R$ {{=receitas}}</b> </li>
+                        <ol>
+                            <li>Venda à Vista (+) R$ {{=projeto.total_venda_vista}}0</li>
+                            <li>Venda à Praso (+) R$ {{=projeto.total_recebido_cobranca}}0</li>
+                          </ol>
+                       
+                      <hr>{{custo=projeto.total_custo_envio-projeto.total_custo_aprov_retorno-projeto.total_custo_aprov_devolucao}}
+                        <li>(-) Custo Mercadoria = <b>R$ {{=custo}}0</b></li>
+                         <ol>{{lucrobruto-=custo}}
+                            <li>Custo de Envio (+) R$ {{=projeto.total_custo_envio}}0</li>
+                            <li>Custo Aproveitamento retorno (-) R$ {{=projeto.total_custo_aprov_retorno}}0</li>
+                             <li>Custo Aproveitamento devolução (-) R$ {{=projeto.total_custo_aprov_devolucao}}0</li>
+                          </ol>
+                      <hr>
+                        
+                        {{venda=projeto.total_vale_saida_vendedor+projeto.total_recebido_chegada_venda_vendedor}}
+                        {{chefia=projeto.vale_saida_chefe+projeto.recebido_chegada_venda}}
+                        {{cobrador=projeto.vale_cobrador+projeto.recebido_chegada_cobrac}}
+                        {{comissao=venda+chefia+cobrador}}
+                        {{lucrobruto-=comissao}}
+                        <li>(-) Comissões = <b>R$ {{=comissao}}0</b></li>
+                        <ol>
+                            <li>(+) Venda R$ {{=venda}}0</li>
+                            <ol>
+                                <li>Vale (+) R$ {{=projeto.total_vale_saida_vendedor}}0</li>
+                                <li>Recebido na Chegada (+) R$ {{=projeto.total_recebido_chegada_venda_vendedor}}0</li> <hr>
+                            </ol>
+                            <li>(+) Chefia R$ {{=chefia}}0</li>
+                            <ol>
+                                <li>Vale (+) R$ {{=projeto.vale_saida_chefe}}0</li>
+                                <li>Recebido na Chegada (+) R$ {{=projeto.recebido_chegada_venda}}0</li> <hr>
+                            </ol>
+                            <li>(+) Cobrança R$ {{=cobrador}}0</li>
+                            <ol>
+                                <li>Vale (+) R$ {{=projeto.vale_cobrador}}0</li>
+                                <li>Recebido na Chegada (+) R$ {{=projeto.recebido_chegada_cobrac}}0</li> <hr>
+                            </ol>
+                            
+                          </ol>
+                      <hr>
+                      <li>(=) Lucro Bruto = <b>R$ {{=lucrobruto}}</b></li>
+                        {{lucroliquido=lucrobruto}}
+                    </ol>
+                      <hr>
+                       <p>Despesas do Projeto</p>
+                      {{despesas=projeto.total_valor_depesa_local+projeto.total_valor_depesa_venda+projeto.total_valor_depesa_cobranca}}
+                      {{funcionario=projeto.total_vale_saida_funcionario+projeto.total_recebido_chegada_funcionario}}
+                      {{despesas+=funcionario}}
+                      {{lucroliquido-=despesas}}
+                      <ol>
+                          <li>(-) Total das Despesas = <b>R$ {{=despesas}}</b></li>
+                    <ol>
+                      <li>Despesa Local (+) {{=projeto.total_valor_depesa_local}}<b></b></li>
+                        <li>Despesa Venda (+) {{=projeto.total_valor_depesa_venda}}<b></b></li>
+                        <li>Despesa Cobrança (+) {{=projeto.total_valor_depesa_cobranca}}<b></b></li>
+                      <li>Funcionarios (+) R$ {{=funcionario}}</li>
+                            <ol>
+                                <li>Vale R$ {{=projeto.total_vale_saida_funcionario}}</li>
+                                <li>Recebido na Chegada R$ {{=projeto.total_recebido_chegada_funcionario}}0</li>
+                            </ol>
+                    </ol>
+                      </ol>
+                      <ol>
+                          <li>(=) Lucro Luquido = <b>R$ {{=lucroliquido}}</b></li>
+                      </ol>
+                  </div>
+                </div>
+              </div>
+            </div>

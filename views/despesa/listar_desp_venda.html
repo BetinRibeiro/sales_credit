@@ -23,7 +23,8 @@
 <h2>Despesas Venda</h2>
 <a class="btn btn-secondary btn-block" href="{{=URL('despesa','inserir_desp_venda', args=projeto.id)}}">Inserir Despesas</a>
 		{{=projeto.nome}}
-<table class="table">
+<div class="table-responsive">
+<table class="table table-striped table-borderless">
             <thead>
               <tr>
                 <th>Descrição</th>
@@ -48,3 +49,4 @@
  {{projeto.total_valor_depesa_venda=a}}
                     {{projeto.update_record()}}
  </div> </div> </div>
+    </div>

@@ -42,6 +42,8 @@ def inserir_desp_local():
 def alterar_desp_local():
 	merc = db.despesa(request.args(0, cast=int))
 	proj = db.projeto(merc.projeto)
+	db.despesa.id.readable = False
+	db.despesa.id.writable = False
 	db.despesa.projeto.readable = False
 	db.despesa.projeto.writable = False
 	form = SQLFORM(db.despesa, request.args(0, cast=int))
@@ -80,6 +82,8 @@ def inserir_desp_venda():
 def alterar_desp_venda():
 	merc = db.despesa(request.args(0, cast=int))
 	proj = db.projeto(merc.projeto)
+	db.despesa.id.readable = False
+	db.despesa.id.writable = False
 	db.despesa.projeto.readable = False
 	db.despesa.projeto.writable = False
 	form = SQLFORM(db.despesa, request.args(0, cast=int))
@@ -118,6 +122,8 @@ def inserir_desp_cobranca():
 def alterar_desp_cobranca():
 	merc = db.despesa(request.args(0, cast=int))
 	proj = db.projeto(merc.projeto)
+	db.despesa.id.readable = False
+	db.despesa.id.writable = False
 	db.despesa.projeto.readable = False
 	db.despesa.projeto.writable = False
 	form = SQLFORM(db.despesa, request.args(0, cast=int))

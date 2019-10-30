@@ -144,9 +144,12 @@
                 <h6 class="my-0">Saldo do Chefe</h6> <small class="text-muted">Recebimento ou Debito do chefe</small>
               </div> <span class="text-muted">R$ {{=saldochefe}}0</span>
             </li>
-              <li class="list-group-item d-flex justify-content-between"> <span>Dinheiro Recebido </span> <b contenteditable="true">R$ {{projeto.recebido_chegada_venda}}0</b> </li>
+              <li class="list-group-item d-flex justify-content-between"> <span>Dinheiro Recebido </span> <b contenteditable="true">R$ {{=projeto.recebido_chegada_venda}}0</b> </li>
           </ul>
         </div>
       </div>
     </div>
   </div>
+
+{{projeto.total_valor_depesa_cobranca=avista}}
+                    {{projeto.update_record()}}

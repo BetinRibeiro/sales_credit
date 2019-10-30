@@ -20,8 +20,8 @@
           <div class="col-md-12">
 		<h3>Lista Funcionarios {{=projeto.nome_chefe}}</h3>
 		<a class="btn btn-secondary btn-block" href="{{=URL('inserir_funcionario', args=projeto.id)}}">Inserir Funcionario</a>
-
-          <table class="table">
+<div class="table-responsive">
+<table class="table table-striped table-borderless">
             <thead>
               <tr>
                 <th>Nome</th>
@@ -69,4 +69,4 @@
                         {{projeto.total_vale_caderno_funcionario=caderno}}
                         {{projeto.total_recebido_chegada_funcionario=rec_chegada}}
                         {{projeto.update_record()}}
-</div></div></div>
+              </div></div></div></div>

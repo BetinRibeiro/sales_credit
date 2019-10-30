@@ -20,6 +20,7 @@
 <h3>Lista Mercadoria de Envio Para venda {{=projeto.nome_chefe}}</h3>
 <a class="btn btn-secondary btn-block"  href="{{=URL('inserir_merc_envio', args=projeto.id)}}">Enviar Produto</a>
 
+<div class="table-responsive">
    <table class="table table-striped table-borderless">
             <thead>
               <tr>
@@ -68,4 +69,4 @@
                     {{projeto.update_record()}}
               </tr>
             </tbody>
-          </table></div></div></div>
+    </table></div></div></div></div>

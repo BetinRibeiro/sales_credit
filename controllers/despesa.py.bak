@@ -2,19 +2,19 @@
 # tente algo como
 
 def listar_desp_local():
-	proj = db.projeto(request.args(0, cast=int))
+	projeto = db.projeto(request.args(0, cast=int))
 	rows = db((db.despesa.projeto == request.args(0, cast=int))& (db.despesa.tipo_desp == "Local") ).select()
 	return locals()
 
 
 def listar_desp_venda():
-	proj = db.projeto(request.args(0, cast=int))
+	projeto = db.projeto(request.args(0, cast=int))
 	rows = db((db.despesa.projeto == request.args(0, cast=int)) & (db.despesa.tipo_desp == "Venda") ).select()
 	return locals()
 
 
 def listar_desp_cobranca():
-	proj = db.projeto(request.args(0, cast=int))
+	projeto = db.projeto(request.args(0, cast=int))
 	rows = db((db.despesa.projeto == request.args(0, cast=int))& (db.despesa.tipo_desp == "Cobranca") ).select()
 	return locals()
 

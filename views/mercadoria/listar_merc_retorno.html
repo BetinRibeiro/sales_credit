@@ -17,8 +17,9 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12">
-<h3>Lista Mercadoria de retorno {{=projeto.nome_chefe}}</h3>
+<p>Lista Mercadoria de retorno {{=projeto.nome_chefe}}</p>
 
+<div class="table-responsive">
   <table class="table table-striped table-borderless">
             <thead>
               <tr>
@@ -43,17 +44,17 @@
 
                 <th>{{=row.quant_pcs_retorno}}</th>
                   <th><a href="{{=URL('alterar_merc_retorno', args=row.id)}}">{{=row.descricao}}</a></th>
-				<th>{{=row.preco_unitario}}</th>
+				<th>{{=row.preco_unitario}}0</th>
                   
                     {{vr=row.quant_pcs_retorno*row.preco_unitario}}
                   
-				<th>{{=vr}}</th>
+				<th>{{=vr}}0</th>
                   
-				<th>{{=row.quant_pcs_aprov_retorno}}</th>
+				<th>{{=row.quant_pcs_aprov_retorno}}0</th>
                   
                     {{vc=row.quant_pcs_aprov_retorno*row.custo_unitario}}
                   
-				<th>{{=vc}}</th>
+				<th>{{=vc}}0</th>
                     {{custo_ret=(row.quant_pcs_retorno*row.custo_unitario)}}
                     {{total_custo_retorno+=custo_ret}}
                     {{total_preco_retorno=total_preco_retorno+vr}}
@@ -63,12 +64,12 @@
               {{pass}}
 				 <tr>
 
-                <th>{{= quant_retorno }}</th>
+                <th>{{= quant_retorno }}0</th>
 				<th>Total</th>
 				<th>--></th>
-				<th>{{=total_preco_retorno}}</th>
+				<th>{{=total_preco_retorno}}0</th>
 					 <th>--></th>
-				<th>{{=total_preco_aproveitamento}}</th>
+				<th>{{=total_preco_aproveitamento}}0</th>
 
               </tr>
             </tbody>
@@ -78,4 +79,4 @@
                      {{projeto.total_custo_retorno=total_custo_retorno}}
                      {{projeto.total_custo_aprov_retorno=total_preco_aproveitamento}}
                         {{projeto.update_record()}}
-</div></div></div>
+              </div></div></div></div>

@@ -19,10 +19,11 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12">
-<h2>Despesas Locais {{=projeto.nome_chefe}}</h2>
+<p>Depositos {{=projeto.nome_cobrador}}</p>
 <a class="btn btn-primary" href="{{=URL('deposito','inserir_deposito', args=projeto.id)}}">Inserir Deposito</a>
 		<br><br>
-<table class="table">
+<div class="table-responsive">
+<table class="table table-striped table-borderless">
             <thead>
               <tr>
                 <th>Descrição</th>
@@ -44,7 +45,7 @@
               </tr>
             </tbody>
           </table>
-            </div></div></div></div>
+              </div></div></div></div></div>
 
  {{projeto.total_valor_deposito=a}}
                     {{projeto.update_record()}}
