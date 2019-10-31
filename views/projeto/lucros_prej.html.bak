@@ -19,7 +19,7 @@
 <div class="section">
               <div class="container">
                 <div class="row">
-                  <div class="col-md-6">
+                  <div class="col-md-5">
                       <p>Demonstrativo Regular em Exercicio</p>
                       <hr>
                       
@@ -68,10 +68,19 @@
                             
                           </ol>
                       <hr>
-                      <li>(=) Lucro Bruto = <b>R$ {{=lucrobruto}}</b></li>
+                        {{if lucrobruto>0:}}
+                      <p>(=) Lucro Bruto = <b>R$ {{=lucrobruto}}</b></p>
+                        {{else:}}
+                        <p class="text-danger">(=) Valor Empregado s/ despesas = <b>R$ {{=lucrobruto}}</b></p>
+                        {{pass}}
                         {{lucroliquido=lucrobruto}}
                     </ol>
                       <hr>
+                    </div></div></div></div>
+
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-5">
                        <p>Despesas do Projeto</p>
                       {{despesas=projeto.total_valor_depesa_local+projeto.total_valor_depesa_venda+projeto.total_valor_depesa_cobranca}}
                       {{funcionario=projeto.total_vale_saida_funcionario+projeto.total_recebido_chegada_funcionario}}
@@ -82,7 +91,7 @@
                     <ol>
                       <li>Despesa Local (+) {{=projeto.total_valor_depesa_local}}<b></b></li>
                         <li>Despesa Venda (+) {{=projeto.total_valor_depesa_venda}}<b></b></li>
-                        <li>Despesa Cobrança (+) {{=projeto.total_valor_depesa_cobranca}}<b></b></li>
+                        <li>Despesa Cobrança (+) {{=projeto.total_valor_depesa_cobranca}}<b></b></li> <hr>
                       <li>Funcionarios (+) R$ {{=funcionario}}</li>
                             <ol>
                                 <li>Vale R$ {{=projeto.total_vale_saida_funcionario}}</li>
@@ -90,9 +99,11 @@
                             </ol>
                     </ol>
                       </ol>
-                      <ol>
-                          <li>(=) Lucro Luquido = <b>R$ {{=lucroliquido}}</b></li>
-                      </ol>
+                      {{if lucrobruto>0:}}
+                      <p>(=) Lucro Liquido = <b>R$ {{=lucroliquido}}</b></p>
+                        {{else:}}
+                        <p class="text-danger">(=) Valor Empregado c/ despesas = <b>R$ {{=lucroliquido}}</b></p>
+                        {{pass}}
                   </div>
                 </div>
               </div>

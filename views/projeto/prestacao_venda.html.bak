@@ -20,11 +20,13 @@
 {{total_retorno=0}}
 {{total_mercadoria=0}}
 {{total_venda=0}}
-  <div class="">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12 order-md-2">
-          <h4 class="d-flex justify-content-between mb-3"> <span class="text-muted">Prestação de Contas (Venda)</span> </h4><a class="btn btn-primary" href="{{=URL('projeto','alterar_dados_chegada_venda', args=projeto.id)}}">Inserir Dados</a><br><br>
+ <div class="section">
+              <div class="container">
+                  <p class="d-flex justify-content-between mb-3"> <span class="text-muted">Prestação de Contas (Venda)</span> </p><a class="btn btn-primary" href="{{=URL('projeto','alterar_dados_chegada_venda', args=projeto.id)}}">Inserir Dados</a><br><br>
+                <div class="row">
+                    
+                  <div class="col-md-6">
+          <p class="d-flex justify-content-between mb-3"> <span class="text-muted">Informações Mercadoria</span> </p>
           <ul class="list-group">
             <li class="list-group-item d-flex justify-content-between">
               <div>
@@ -44,10 +46,16 @@
                   {{total_venda=projeto.total_venda}}
               </div> <span class="text-muted">R$ {{=projeto.total_venda}}0</span>
             </li><br>
+           
+          <p class="d-flex justify-content-between mb-3"> <span class="text-muted">Dinheiro da Viagem</span> </p>
             <li class="list-group-item d-flex justify-content-between bg-light">
               <div class="text-success">{{diferenca=total_mercadoria-total_retorno-total_venda}}
                 <h6 class="my-0"><b>Venda à Vista</b></h6> <small>{{=diferenca}}0 Diferênça&nbsp;</small>
+                  
+                  {{avista=0}}
+                  {{if total_venda>0:}}
                   {{avista=diferenca/2}}
+                  {{pass}}
               </div> <span class="text-success">R$ {{=avista}}0</span>
             </li>
             <li class="list-group-item d-flex justify-content-between">
@@ -66,15 +74,10 @@
             <li class="list-group-item d-flex justify-content-between"> <span>Total do Dinheiro da Viagem</span> <b contenteditable="true">R$ {{=din_viagem}}0</b> </li>
           </ul>
         </div>
-      </div>
-    </div>
-  </div>
-  <div class="">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12 order-md-2">
+     
+                  <div class="col-md-6">
             {{diferenca=din_viagem}}
-          <h4 class="d-flex justify-content-between mb-3"> <span class="text-muted">Valor Apresentado</span> </h4>
+          <p class="d-flex justify-content-between mb-3"> <span class="text-muted">Valor Apresentado</span> </p>
           <ul class="list-group">
             <li class="list-group-item d-flex justify-content-between">
               <div>{{diferenca-=projeto.total_valor_depesa_venda}}
@@ -102,19 +105,18 @@
             </li>
             <li class="list-group-item d-flex justify-content-between bg-light">
               <div class="text-success">
+                  {{if diferenca > 0.0:}}
+                                       
                 <h6 class="my-0"><b class="text-danger">Diferênça da Prestação</b></h6> <small class="text-danger"># Diferênça&nbsp;</small>
               </div> <span class="text-danger">R$ {{=diferenca}}0</span>
+                      {{else:}}
+                      <h6 class="my-0"><b class="text-danger">Esta sobrando Dinheiro</b></h6> <small class="text-danger"># Não se gasta mais do que se recebe</small>
+              </div> <span class="text-danger">Erro</span>
+                    {{pass}}
             </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12 order-md-2">
-          <h4 class="d-flex justify-content-between mb-3"> <span class="text-muted">Saldo Chefe&nbsp;</span> </h4>
+          </ul><br>
+      
+          <p class="d-flex justify-content-between mb-3"> <span class="text-muted">Saldo Chefe&nbsp;</span> </p>
           <ul class="list-group">
             <li class="list-group-item d-flex justify-content-between">
               <div>
@@ -136,13 +138,24 @@
             </li>
             <li class="list-group-item d-flex justify-content-between bg-light" >
               <div class="text-success">
-                <h6 class="my-0"><b class="text-danger">Diferênça da Prestação</b></h6> <small class="text-danger">Dinheiro descontado do chefe</small>
+               {{if diferenca > 0.0:}}
+                                       
+                <h6 class="my-0"><b class="text-danger">Diferênça da Prestação</b></h6> <small class="text-danger"># Diferênça&nbsp;</small>
               </div> <span class="text-danger">R$ {{=diferenca}}0</span>
+                      {{else:}}
+                      <h6 class="my-0"><b class="text-danger">Esta sobrando Dinheiro</b></h6> <small class="text-danger"># Não se gasta mais do que se recebe</small>{{diferenca=0}}
+              </div> <span class="text-danger">Erro</span>
+                    {{pass}}
             </li>
             <li class="list-group-item d-flex justify-content-between">
               <div>{{saldochefe=comissaochef-projeto.vale_saida_chefe-diferenca}}
+                 {{if saldochefe> 0:}}
                 <h6 class="my-0">Saldo do Chefe</h6> <small class="text-muted">Recebimento ou Debito do chefe</small>
               </div> <span class="text-muted">R$ {{=saldochefe}}0</span>
+                {{else:}}
+                <h6 class="my-0 text-danger">Saldo do Chefe</h6> <small class="text-danger">Esta em Debido</small>
+              </div> <span class="text-danger">R$ {{=saldochefe}}0</span>
+                {{pass}}
             </li>
               <li class="list-group-item d-flex justify-content-between"> <span>Dinheiro Recebido </span> <b contenteditable="true">R$ {{=projeto.recebido_chegada_venda}}0</b> </li>
           </ul>
@@ -151,5 +164,5 @@
     </div>
   </div>
 
-{{projeto.total_valor_depesa_cobranca=avista}}
+{{projeto.total_venda_vista=avista}}
                     {{projeto.update_record()}}

@@ -20,9 +20,10 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12">
-<h2>Despesas Cobrança {{=projeto.nome_chefe}}</h2>
-<a class="btn btn-secondary btn-block" href="{{=URL('despesa','inserir_desp_cobranca', args=projeto.id)}}">Inserir Despesas</a>
+<p>Despesas Cobrança {{=projeto.nome_chefe}}</p>
+<a class="btn btn-primary" href="{{=URL('despesa','inserir_desp_cobranca', args=projeto.id)}}">Inserir Despesas</a>
 		
+<div class="table-responsive">
 <table class="table table-striped table-borderless">
             <thead>
               <tr>
@@ -45,6 +46,6 @@
               </tr>
             </tbody>
           </table>
-            </div></div></div>
+            </div></div></div></div>
 {{projeto.total_valor_depesa_cobranca=a}}
                     {{projeto.update_record()}}

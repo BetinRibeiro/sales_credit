@@ -36,7 +36,7 @@
     <div class="w2p_flash alert alert-dismissable">{{=response.flash or ''}}</div>
     <!-- Navbar ======================================= -->
     <nav class="navbar navbar-light navbar-expand-md bg-faded justify-content-center">
-       <a href="#" class="navbar-brand d-flex w-50 mr-auto">Rogoberto Ribeiro</a>
+       <a href="#" class="navbar-brand d-flex w-50 mr-auto">Controle de Crediario</a>
        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
          <span class="navbar-toggler-icon"></span>
        </button>
@@ -95,9 +95,13 @@
     <!-- Main ========================================= -->
     <!-- Begin page content -->
     <div class="container-fluid main-container">
+        <div class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
       {{include}}
       {{=response.toolbar() if response.show_toolbar else ''}}
-    </div>
+    </div></div></div></div></div>
 
     {{block footer}} <!-- this is default footer -->
     <footer class="footer container-fluid">
@@ -105,8 +109,8 @@
         <div class="col-md-12">
           <div class="copyright pull-left">{{=T('Copyright')}} &#169; {{=request.now.year}}</div>
           <div id="poweredBy" class="pull-right">
-            {{=T('Powered by')}}
-            <a href="#">Python</a>
+            Desenvolvido por
+            <a href="https://api.whatsapp.com/send?phone=5588981126816">Rogoberto Ribeiro</a>
           </div>
         </div>
       </div>

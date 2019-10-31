@@ -19,7 +19,7 @@
 <div class="section">
               <div class="container">
                 <div class="row">
-                  <div class="col-md-6">
+                  <div class="col-md-5">
                       <p>Demonstrativo Regular em Exercicio</p>
                       <hr>
                       
@@ -68,10 +68,16 @@
                             
                           </ol>
                       <hr>
-                      <li>(=) Lucro Bruto = <b>R$ {{=lucrobruto}}</b></li>
+                        {{if lucrobruto>0:}}
+                      <p>(=) Lucro Bruto = <b>R$ {{=lucrobruto}}</b></p>
+                        {{else:}}
+                        <p class="text-danger">(=) Valor Empregado s/ despesas = <b>R$ {{=lucrobruto}}</b></p>
+                        {{pass}}
                         {{lucroliquido=lucrobruto}}
                     </ol>
                       <hr>
+                    </div>
+                  <div class="col-md-5">
                        <p>Despesas do Projeto</p>
                       {{despesas=projeto.total_valor_depesa_local+projeto.total_valor_depesa_venda+projeto.total_valor_depesa_cobranca}}
                       {{funcionario=projeto.total_vale_saida_funcionario+projeto.total_recebido_chegada_funcionario}}
@@ -90,9 +96,11 @@
                             </ol>
                     </ol>
                       </ol>
-                      <ol>
-                          <li>(=) Lucro Luquido = <b>R$ {{=lucroliquido}}</b></li>
-                      </ol>
+                      {{if lucrobruto>0:}}
+                      <p>(=) Lucro Liquido = <b>R$ {{=lucroliquido}}</b></p>
+                        {{else:}}
+                        <p class="text-danger">(=) Valor Empregado c/ despesas = <b>R$ {{=lucroliquido}}</b></p>
+                        {{pass}}
                   </div>
                 </div>
               </div>

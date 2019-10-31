@@ -212,3 +212,5 @@ success!
 timestamp: 2019-10-30T02:30:31.707673
 ALTER TABLE "projeto" ADD "total_venda_vista" DOUBLE NOT NULL DEFAULT 0.0;
 success!
+success!
+success!
