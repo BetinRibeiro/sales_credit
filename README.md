@@ -1,6 +1,7 @@
 # sales_credit
 <p>Sistema de controle de vendas e crediario </p>
 <p>modulos de controle:</p>
+<img src="https://ap.imagensbrasil.org/images/2019/11/03/15.jpg" class="img-responsive">
 <ul>
   <li>01 - mercadoria enviada para venda </li>
    <p>  custo e preço </p>
@@ -41,6 +42,7 @@
      <p> relatorio final dos resultados do projeto ajudando a tomada de decisão e redução
       de custos e despesas para melhorar a lucratividade e produtividade do projeto </p></ul>
       </ul>
+      
       <img src="https://ap.imagensbrasil.org/images/2019/11/03/r.jpg" class="img-responsive">
 Contato <li>usbetin@gmail.com</li>
        <li> (88) 9.8112-6816</li>
