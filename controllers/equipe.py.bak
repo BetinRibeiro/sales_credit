@@ -79,8 +79,8 @@ def alterar_vendedor():
 def alterar_funcionaro():
     merc = db.funcionario(request.args(0, cast=int))
     proj = db.projeto(merc.projeto)
-    db.vendedor.id.readable = False
-    db.vendedor.id.writable = False
+    db.funcionario.id.readable = False
+    db.funcionario.id.writable = False
     db.funcionario.projeto.default = proj.id
     db.funcionario.projeto.readable = False
     db.funcionario.projeto.writable = False

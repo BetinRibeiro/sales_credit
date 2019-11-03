@@ -15,11 +15,6 @@
       </div>
     </div>
   </nav>
-<br><br>
-<div class="section">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
 <p>Despesas Cobrança {{=projeto.nome_chefe}}</p>
 <a class="btn btn-primary" href="{{=URL('despesa','inserir_desp_cobranca', args=projeto.id)}}">Inserir Despesas</a><br><br>
 		
@@ -36,16 +31,15 @@
 				{{for row in rows:}}
               <tr>
                 <th><a href="{{=URL('alterar_desp_cobranca', args=row.id)}}">{{=row.descricao}}</a></th>
-				<th>{{=row.valor}}</th>
+				<td>R$ {{="{:,}".format(row.valor).replace(",",".")}}0</td>
 				  {{a=a+row.valor}}
               </tr>
               {{pass}}
 				 <tr>
                 <th>Total</th>
-				<th>{{=a}}</th>
+				<th>R$ {{="{:,}".format(a).replace(",",".")}}0</th>
               </tr>
             </tbody>
           </table>
-            </div></div></div></div>
 {{projeto.total_valor_depesa_cobranca=a}}
                     {{projeto.update_record()}}

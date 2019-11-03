@@ -13,11 +13,7 @@
         </ul>
       </div>
     </div>
-  </nav><br><br>
-<div class="section">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
+  </nav>
 <p>Lista Mercadoria Devolvida da Cobrança - {{=projeto.nome_cobrador}}</p>
 
 <div class="table-responsive">
@@ -41,15 +37,15 @@
 				{{for row in rows:}}
               <tr>
 
-                <th>{{=row.quant_pcs_devolucao}}</th>
-                  <th><a href="{{=URL('alterar_merc_devolucao', args=row.id)}}">{{=row.descricao}}</a></th>
-				<th>{{=row.preco_unitario}}</th>
+                <td>{{=row.quant_pcs_devolucao}}</td>
+                  <td><a href="{{=URL('alterar_merc_devolucao', args=row.id)}}">{{=row.descricao}}</a></td>
+				<td>R$ {{="{:,}".format(row.preco_unitario).replace(",",".")}}0</td>
                     {{vr=row.quant_pcs_devolucao*row.preco_unitario}}
-				<th>{{=vr}}</th>
-				<th>{{=row.quant_pcs_aprov_devolucao}}</th>
+				<td>R$ {{="{:,}".format(vr).replace(",",".")}}0</td>
+				<td>R$ {{="{:,}".format(row.quant_pcs_aprov_devolucao).replace(",",".")}}0</td>
                 
 				{{vc=row.quant_pcs_aprov_devolucao*row.custo_unitario}}
-				<th>{{=vc}}</th>
+				<td>R$ {{="{:,}".format(vc).replace(",",".")}}0</td>
                
 				{{ptotal=ptotal+vr}}
 
@@ -62,12 +58,13 @@
                 <th>{{=q}}</th>
 				<th>Total</th>
 				<th>--></th>
-				<th>{{=ptotal}}</th>
+				<th>R$ {{="{:,}".format(ptotal).replace(",",".")}}0</th>
 					 <th>--></th>
-				<th>{{=ctotal}}</th>
+				<th>R$ {{="{:,}".format(ctotal).replace(",",".")}}0</th>
 
               </tr>
             </tbody>
           </table>
-</div></div></div>
-    </div>
+                     {{projeto.total_preco_devolucao=ptotal}}
+                     {{projeto.total_custo_aprov_devolucao=ctotal}}
+                    {{projeto.update_record()}}

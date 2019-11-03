@@ -18,6 +18,7 @@ def listar_desp_cobranca():
 	rows = db((db.despesa.projeto == request.args(0, cast=int))& (db.despesa.tipo_desp == "Cobranca") ).select()
 	return locals()
 
+@auth.requires_membership('Administrador')
 def inserir_desp_local():
 	proj = db.projeto(request.args(0, cast=int))
 	db.despesa.projeto.default = proj.id
@@ -39,6 +40,7 @@ def inserir_desp_local():
 	return locals()
 
 
+@auth.requires_membership('Administrador')
 def alterar_desp_local():
 	merc = db.despesa(request.args(0, cast=int))
 	proj = db.projeto(merc.projeto)
@@ -58,6 +60,7 @@ def alterar_desp_local():
 	return locals()
 
 
+@auth.requires_membership('Administrador')
 def inserir_desp_venda():
 	proj = db.projeto(request.args(0, cast=int))
 	db.despesa.projeto.default = proj.id
@@ -79,6 +82,7 @@ def inserir_desp_venda():
 	return locals()
 
 
+@auth.requires_membership('Administrador')
 def alterar_desp_venda():
 	merc = db.despesa(request.args(0, cast=int))
 	proj = db.projeto(merc.projeto)
@@ -98,6 +102,7 @@ def alterar_desp_venda():
 	return locals()
 
 
+@auth.requires_membership('Administrador')
 def inserir_desp_cobranca():
 	proj = db.projeto(request.args(0, cast=int))
 	db.despesa.projeto.default = proj.id
@@ -119,6 +124,7 @@ def inserir_desp_cobranca():
 	return locals()
 
 
+@auth.requires_membership('Administrador')
 def alterar_desp_cobranca():
 	merc = db.despesa(request.args(0, cast=int))
 	proj = db.projeto(merc.projeto)

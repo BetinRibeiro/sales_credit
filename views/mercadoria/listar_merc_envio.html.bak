@@ -19,7 +19,7 @@
           <div class="col-md-12">
 <p>Lista Mercadoria de Envio Para venda - {{=projeto.nome_chefe}}</p>
 <a class="btn btn-primary"  href="{{=URL('inserir_merc_envio', args=projeto.id)}}">Enviar Produto</a>
-
+<br><br>
 <div class="table-responsive">
    <table class="table table-striped table-borderless">
             <thead>
@@ -41,14 +41,14 @@
 				{{for row in rows:}}
               <tr>
 
-                <th>{{=row.quant_pcs_enviada}}</th>
-                  <th><a href="{{=URL('alterar_merc_enviada', args=row.id)}}">{{=row.descricao}}</a></th>
-				<th>{{=row.preco_unitario}}</th>
+                <td>{{=row.quant_pcs_enviada}}</td>
+                  <td><a href="{{=URL('alterar_merc_enviada', args=row.id)}}">{{=row.descricao}}</a></td>
+				<td>R$ {{=row.preco_unitario}}0</td>
 				{{total_preco=row.quant_pcs_enviada*row.preco_unitario}}
-				<th>{{=total_preco}}</th>
-				<th>{{=row.custo_unitario}}</th>
+				<td>R$ {{="{:,}".format(total_preco).replace(",",".")}}0</td>
+				<td>R$ {{="{:,}".format(row.custo_unitario).replace(",",".")}}0</td>
 				{{total_custo=row.quant_pcs_enviada*row.custo_unitario}}
-				<th>{{=total_custo}}</th>
+				<td>R$ {{="{:,}".format(total_custo).replace(",",".")}}0</td>
 				{{total_preco_mercadoria=total_preco_mercadoria+total_preco}}
 
 				{{total_custo_mercadoria=total_custo_mercadoria+total_custo}}
@@ -60,9 +60,9 @@
                 <th>{{=total_quant}}</th>
 				<th>Total</th>
 				<th>--></th>
-				<th>{{=total_preco_mercadoria}}</th>
+				<th>R$ {{="{:,}".format(total_preco_mercadoria).replace(",",".")}}0</th>
 					 <th>--></th>
-				<th>{{=total_custo_mercadoria}}</th>
+				<th>R$ {{="{:,}".format(total_custo_mercadoria).replace(",",".")}}0</th>
                      {{projeto.total_preco_envio=total_preco_mercadoria}}
                      {{projeto.total_custo_envio=total_custo_mercadoria}}
                      {{projeto.total_quant_pcs_envio=total_quant}}

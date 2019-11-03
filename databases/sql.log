@@ -214,3 +214,9 @@ ALTER TABLE "projeto" ADD "total_venda_vista" DOUBLE NOT NULL DEFAULT 0.0;
 success!
 success!
 success!
+timestamp: 2019-11-03T00:38:55.905483
+ALTER TABLE "projeto" ADD "diferenca_chefe" DOUBLE NOT NULL DEFAULT 0.0;
+success!
+timestamp: 2019-11-03T00:44:53.733001
+ALTER TABLE "projeto" ADD "diferenca_cobrador" DOUBLE NOT NULL DEFAULT 0.0;
+success!

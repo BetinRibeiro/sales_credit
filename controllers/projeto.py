@@ -6,9 +6,13 @@ def prestacao_venda():
 def prestacao_cobr():
     projeto = db.projeto(request.args(0, cast=int))
     return locals()
+
+@auth.requires_membership('Administrador')
 def lucros_prej():
     projeto = db.projeto(request.args(0, cast=int))
     return locals()
+
+@auth.requires_membership('Administrador')
 def investimento():
     projeto = db.projeto(request.args(0, cast=int))
     return locals()
@@ -17,6 +21,7 @@ def acesso_geral_projeto():
     projeto = db.projeto(request.args(0, cast=int))
     return locals()
 
+@auth.requires_membership('Administrador')
 def alterar_projeto():
     projeto = db.projeto(request.args(0, cast=int))
 
@@ -75,6 +80,7 @@ def listar_projetos():
     rows = db(db.projeto.created_by == auth.user).select()
     return locals()
 
+@auth.requires_membership('Administrador')
 def criar_projeto():
     conteudo = db.projeto(request.args(0, auth.user))
 
@@ -120,6 +126,7 @@ def criar_projeto():
         response.flash = 'Preencha o formulario'
     return locals()
 
+@auth.requires_membership('Administrador')
 def alterar_dados_chegada_venda():
     projeto = db.projeto(request.args(0, cast=int))
 
@@ -163,6 +170,7 @@ def alterar_dados_chegada_venda():
     return locals()
 
 
+@auth.requires_membership('Administrador')
 def alterar_dados_cobranca():
     projeto = db.projeto(request.args(0, cast=int))
 
@@ -214,6 +222,10 @@ def alterar_dados_cobranca():
 
     db.projeto.comissao_chefe_cobranca.readable = False
     db.projeto.comissao_chefe_cobranca.writable = False
+    
+    db.projeto.recebido_chegada_cobrac.readable = True
+    db.projeto.recebido_chegada_cobrac.writable = True
+
 
     form = SQLFORM(db.projeto, request.args(0, cast=int))
     if form.process().accepted:

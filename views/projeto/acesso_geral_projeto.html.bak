@@ -5,11 +5,15 @@
       </button>
       <div class="collapse navbar-collapse" id="navbar10">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item"> <a class="nav-link" href="{{=URL('acesso_geral_projeto', args=projeto.id)}}">Acesso Geral</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="{{=URL('projeto','acesso_geral_projeto', args=projeto.id)}}">Acesso Geral</a> </li>
+            
           <li class="nav-item"> <a class="nav-link" href="{{=URL('projeto','prestacao_venda', args=projeto.id)}}">Prestação Venda</a> </li>
+            
           <li class="nav-item"> <a class="nav-link" href="{{=URL('projeto','investimento', args=projeto.id)}}">Investimento</a> </li>
+             
           <li class="nav-item"> <a class="nav-link" href="{{=URL('projeto','prestacao_cobr', args=projeto.id)}}">Prestação Cobrança</a> </li>
           <li class="nav-item"> <a class="nav-link" href="{{=URL('projeto','lucros_prej', args=projeto.id)}}">Relatorio Lucros</a> </li>
+            
         </ul>
       </div>
     </div>
@@ -19,38 +23,54 @@
     <div class="container">
       <div class="row">
         <div class="p-4 col-md-3">
+            <img src="https://cdn.icon-icons.com/icons2/157/PNG/128/shipping_products_22121.png"
+            class="img-responsive">
           <h2 class="mb-4">Mercadoria</h2>
             <ul class="text-capitalize">
               <a href="{{=URL('mercadoria','listar_merc_envio', args=projeto.id)}}" class="text-dark">(1) - Envio/Venda</a><br>
+               
               <a href="{{=URL('mercadoria','listar_merc_retorno', args=projeto.id)}}" class="text-dark">(2) - Retorno/Venda</a><br>
+                
               <a href="{{=URL('mercadoria','listar_merc_devolucao', args=projeto.id)}}" class="text-dark">(5) - Devolução/Cobrança</a><br>
-             </ul>
+          
+            </ul>
         </div>
         <div class="p-4 col-md-3">
+            <img src="https://cdn.icon-icons.com/icons2/1989/PNG/128/artboard_123061.png"
+            class="img-responsive">
           <h2 class="mb-4">Equipe</h2>
           <ul class="text-capitalize">
               <a href="{{=URL('equipe','listar_func_venda', args=projeto.id)}}" class="text-dark">(1) - Funcionarios</a><br>
               <a href="{{=URL('equipe','listar_vendedor', args=projeto.id)}}" class="text-dark">(1) - Vendedores</a><br>
-              <a href="{{=URL('equipe','listar_venda', args=projeto.id)}}" class="text-dark">(2) - Venda/Comissão</a><br>
-              <a href="{{=URL('equipe','listar_cobranca', args=projeto.id)}}" class="text-dark">(5) - Cobrança/Saldo</a>
              
+              <a href="{{=URL('equipe','listar_venda', args=projeto.id)}}" class="text-dark">(2) - Venda/Comissão</a><br>
+              
+              <a href="{{=URL('equipe','listar_cobranca', args=projeto.id)}}" class="text-dark">(5) - Cobrança/Saldo</a>
+           
             </ul>
         </div>
         <div class="p-4 col-md-3">
+            <img src="https://cdn.icon-icons.com/icons2/1725/PNG/128/4014672-bill-contract-cost-document-mobile-receipt-service_112892.png"
+            class="img-responsive">
           <h2 class="mb-4">Despesas</h2>
           <ul class="">
               <a href="{{=URL('despesa','listar_desp_local', args=projeto.id)}}" class="text-dark">(0) - Desp. Local</a> <br>
+             
               <a href="{{=URL('despesa','listar_desp_venda', args=projeto.id)}}" class="text-dark">(2) - Desp. Venda</a> <br>
+               
               <a href="{{=URL('despesa','listar_desp_cobranca', args=projeto.id)}}" class="text-dark">(5) - Desp. Cobrança</a> <br>
 
             </ul>
         </div>
         <div class="p-4 col-md-3">
+             <img src="https://cdn.icon-icons.com/icons2/554/PNG/128/money_dollar_cash_coins_riches_wealth_icon-icons.com_53585.png"
+            class="img-responsive">
           <h2 class="mb-4">Deposito</h2>
           <ul class="">
               <a href="{{=URL('deposito','listar_depositos', args=projeto.id)}}" class="text-dark">(4) - Depositos/Cobrador</a><br>
 
             </ul>
+            
         </div>
       </div>
     </div>

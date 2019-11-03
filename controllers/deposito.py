@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 
+@auth.requires_membership('Administrador')
 def listar_depositos():
 	projeto = db.projeto(request.args(0, cast=int))
 	rows = db((db.deposito.projeto == request.args(0, cast=int))).select()
 	return locals()
 
-
+@auth.requires_membership('Administrador')
 def inserir_deposito():
 	projeto = db.projeto(request.args(0, cast=int))
 	db.deposito.projeto.default = projeto.id
@@ -23,6 +24,7 @@ def inserir_deposito():
 	return locals()
 
 
+@auth.requires_membership('Administrador')
 def alterar_deposito():
 	merc = db.deposito(request.args(0, cast=int))
 	projeto = db.projeto(merc.projeto)

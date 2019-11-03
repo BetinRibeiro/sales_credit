@@ -13,22 +13,18 @@
         </ul>
       </div>
     </div>
-  </nav><br><br>
-	<div class="section">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-	<p>Lista de Envio - {{=projeto.nome_chefe}}</p><br>
-			
+  </nav>
+	
+	<p>Lista projeto de venda - {{=projeto.nome_chefe}}</p>
 <div class="table-responsive">
-	<table class="table table-striped table-borderless">
-	            <thead>
-	              <tr>
+    <table class="table table-striped table-borderless">
+        <thead>
+            <tr>
 	                <th>Nome</th>
 	                <th>Fichas</th>
 	                  <th>Entrada</th>
 	                  <th>Venda</th>
-	                <th>Comissao</th> 
+	                <th>Comissão</th> 
 	                  <th>Vale</th>
 	                <th>Caderno</th> 
 	                  <th>Saldo</th>
@@ -47,16 +43,17 @@
 	
 					{{for row in rows:}}
 	              <tr> 
-	                  <th><a href="{{=URL('alterar_vendedor_venda', args=row.id)}}">{{=row.nome_vendedor}}</a></th>
-	                <th>{{=row.quant_fichas}}</th>
-	                  <th>{{=row.entradas_venda}}</th>
-	                  <th>{{=row.venda}}</th>
+	                  <td><a href="{{=URL('alterar_vendedor_venda', args=row.id)}}">{{=row.nome_vendedor}}</a></td>
+	                <td>{{=row.quant_fichas}}</td>
+	                  <td>R$ {{="{:,}".format(row.entradas_venda).replace(",",".")}}0</td>
+	                  <td>R$ {{="{:,}".format(row.venda).replace(",",".")}}0</td>
 	                  {{comiss=row.venda*row.comissao_venda/100}}
-	                <th>{{=comiss}}</th> 
-	                  <th>{{=row.vale_saida}}</th>
-	                <th>{{=row.vale_caderno}}</th> 
-	                  <th>{{=comiss-(row.vale_saida)-(row.vale_caderno)}}</th>
-	<th>{{=row.valor_receb_chegada_venda}}</th>
+	                <td>R$ {{="{:,}".format(comiss).replace(",",".")}}0</td>
+	                  <td>R$ {{="{:,}".format(row.vale_saida).replace(",",".")}}0</td>
+	                <td>R$ {{="{:,}".format(row.vale_caderno).replace(",",".")}}0</td>0
+                      {{saldo=comiss-(row.vale_saida)-(row.vale_caderno)}}
+	                 <td>R$ {{="{:,}".format(saldo).replace(",",".")}}0</td>0
+	<td>R$ {{="{:,}".format(row.valor_receb_chegada_venda).replace(",",".")}}0</td>0
                       {{totalrecebido+=row.valor_receb_chegada_venda}}
 	                  {{totalfichas=totalfichas+row.quant_fichas}}
 	                   {{totalentrada=totalentrada+row.entradas_venda}}
@@ -68,14 +65,14 @@
 	              {{pass}}
 					 <tr>
 	                 <th>Total</th>
-	                 <th>{{=totalfichas}}</th>
-	                 <th>{{=totalentrada}}</th>
-	                 <th>{{=totalvenda}}</th>
-	                 <th>{{=totalcomissao}}</th>
-	                 <th>{{=totalvale}}</th>
-	                 <th>{{=totalcaderno}}</th>
+	                 <th>{{=totalfichas}}0</th>
+	                 <th>R$ {{="{:,}".format(totalentrada).replace(",",".")}}0</th>0
+	                <th>R$ {{="{:,}".format(totalvenda).replace(",",".")}}0</th>0
+	                 <th>R$ {{="{:,}".format(totalcomissao).replace(",",".")}}0</th>0
+	                 <th>R$ {{="{:,}".format(totalvale).replace(",",".")}}0</th>0
+	                 <th>R$ {{="{:,}".format(totalcaderno).replace(",",".")}}0</th>0
 	                 <th>--></th>
-	                 <th>{{=totalrecebido}}</th>
+	                 <th>R$ {{="{:,}".format(totalrecebido).replace(",",".")}}0</th>0
 	                     
 	              </tr>
 	            </tbody>
@@ -88,4 +85,3 @@
 	{{projeto.total_comis_venda_vendedor=totalcomissao}}
 	{{projeto.total_recebido_chegada_venda_vendedor=totalrecebido}}
 	                        {{projeto.update_record()}}
-              </div></div></div></div>

@@ -15,11 +15,11 @@ def listar_merc_devolucao():
     projeto = db.projeto(request.args(0, cast=int))
     rows = db(db.mercadoria.projeto == request.args(0, cast=int)).select()
     return locals()
-
+@auth.requires_membership('administrador')
 def inserir_merc_envio():
 	proj = db.projeto(request.args(0, cast=int))
-	db.mercadoria.id.default = proj.id
-	db.mercadoria.id.writable = False
+	db.mercadoria.projeto.default = proj.id
+	db.mercadoria.projeto.writable = False
     
 	db.mercadoria.quant_pcs_retorno.readable = False
 	db.mercadoria.quant_pcs_retorno.writable = False
@@ -44,9 +44,12 @@ def inserir_merc_envio():
 		response.flash = 'Preencha o formulario'
 	return locals()
 
+@auth.requires_membership('administrador')
 def alterar_merc_enviada():
 	merc = db.mercadoria(request.args(0, cast=int))
 	proj = db.projeto(merc.projeto)
+	db.mercadoria.id.readable = False
+	db.mercadoria.id.writable = False
 	db.mercadoria.projeto.readable = False
 	db.mercadoria.projeto.writable = False
     
@@ -74,9 +77,12 @@ def alterar_merc_enviada():
 	return locals()
 
 
+@auth.requires_membership('administrador')
 def alterar_merc_retorno():
 	merc = db.mercadoria(request.args(0, cast=int))
 	proj = db.projeto(merc.projeto)
+	db.mercadoria.id.readable = False
+	db.mercadoria.id.writable = False
 	db.mercadoria.projeto.readable = False
 	db.mercadoria.projeto.writable = False
     
@@ -111,9 +117,12 @@ def alterar_merc_retorno():
 
 
 
+@auth.requires_membership('administrador')
 def alterar_merc_devolucao():
 	merc = db.mercadoria(request.args(0, cast=int))
 	proj = db.projeto(merc.projeto)
+	db.mercadoria.id.readable = False
+	db.mercadoria.id.writable = False
 	db.mercadoria.projeto.readable = False
 	db.mercadoria.projeto.writable = False
     

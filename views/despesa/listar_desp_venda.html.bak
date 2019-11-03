@@ -20,9 +20,8 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12">
-<h2>Despesas Venda</h2>
-<a class="btn btn-secondary btn-block" href="{{=URL('despesa','inserir_desp_venda', args=projeto.id)}}">Inserir Despesas</a>
-		{{=projeto.nome}}
+<p>Despesas Venda</p>
+<a class="btn btn-primary" href="{{=URL('despesa','inserir_desp_venda', args=projeto.id)}}">Inserir Despesas</a><br><br>
 <div class="table-responsive">
 <table class="table table-striped table-borderless">
             <thead>
@@ -36,13 +35,13 @@
 				{{for row in rows:}}
               <tr>
                 <th><a href="{{=URL('alterar_desp_venda', args=row.id)}}">{{=row.descricao}}</a></th>
-				<th>{{=row.valor}}</th>
+				<td>R$ {{="{:,}".format(row.valor).replace(",",".")}}0</td>
 				  {{a=a+row.valor}}
               </tr>
               {{pass}}
 				 <tr>
                 <th>Total</th>
-				<th>{{=a}}</th>
+				<th>R$ {{="{:,}".format(a).replace(",",".")}}0</th>
               </tr>
             </tbody>
           </table>

@@ -15,7 +15,7 @@ def listar_merc_devolucao():
     projeto = db.projeto(request.args(0, cast=int))
     rows = db(db.mercadoria.projeto == request.args(0, cast=int)).select()
     return locals()
-
+@auth.requires_membership('Administrador')
 def inserir_merc_envio():
 	proj = db.projeto(request.args(0, cast=int))
 	db.mercadoria.projeto.default = proj.id
@@ -44,6 +44,7 @@ def inserir_merc_envio():
 		response.flash = 'Preencha o formulario'
 	return locals()
 
+@auth.requires_membership('Administrador')
 def alterar_merc_enviada():
 	merc = db.mercadoria(request.args(0, cast=int))
 	proj = db.projeto(merc.projeto)
@@ -76,6 +77,7 @@ def alterar_merc_enviada():
 	return locals()
 
 
+@auth.requires_membership('Administrador')
 def alterar_merc_retorno():
 	merc = db.mercadoria(request.args(0, cast=int))
 	proj = db.projeto(merc.projeto)
@@ -115,6 +117,7 @@ def alterar_merc_retorno():
 
 
 
+@auth.requires_membership('Administrador')
 def alterar_merc_devolucao():
 	merc = db.mercadoria(request.args(0, cast=int))
 	proj = db.projeto(merc.projeto)

@@ -22,56 +22,79 @@
                   <div class="col-md-5">
                       <p>Demonstrativo Regular em Exercicio</p>
                       <hr>
-                      
-                      
+                      {{receitas=0.0}}
+                      {{vista=0.0}}
+                      {{praso=0.0}}
                       <p>Entrada em Dinheiro</p>
-                      {{receitas=projeto.total_venda_vista+projeto.total_recebido_cobranca}}
+                      
+                      {{if projeto.total_venda>0 and projeto.total_valor_depesa_venda>0:}}
+                      {{vista+=projeto.total_venda_vista}}
+                      {{pass}}
+                      
+                      {{if projeto.total_valor_deposito>0:}}
+                      {{praso+=projeto.total_recebido_cobranca+projeto.total_entradas_venda}}
+                      {{else:}}
+                      {{praso+=projeto.total_entradas_venda}}
+                      {{pass}}
+                      
+                      {{receitas=vista+praso}}
                       {{lucrobruto=receitas}}
                     <ol>
-                      <li>(+) Receitas = <b>R$ {{=receitas}}</b> </li>
+                      <li>(+) Receitas = <b>R$ {{="{:,}".format(round(receitas,2)).replace(",",".")}}0</b> </li>
                         <ol>
-                            <li>Venda à Vista (+) R$ {{=projeto.total_venda_vista}}0</li>
-                            <li>Venda à Praso (+) R$ {{=projeto.total_recebido_cobranca}}0</li>
+                            
+                            <li>Venda à Vista (+) R$ {{="{:,}".format(round(vista,2)).replace(",",".")}}0</li>
+                            
+                            <li>Venda à Praso (+) R$ {{="{:,}".format(round(praso,2)).replace(",",".")}}0</li>
                           </ol>
                        
                       <hr>{{custo=projeto.total_custo_envio-projeto.total_custo_aprov_retorno-projeto.total_custo_aprov_devolucao}}
-                        <li>(-) Custo Mercadoria = <b>R$ {{=custo}}0</b></li>
+                        <li>(-) Custo Mercadoria = <b>R$ {{="{:,}".format(round(custo,2)).replace(",",".")}}0</b></li>
                          <ol>{{lucrobruto-=custo}}
-                            <li>Custo de Envio (+) R$ {{=projeto.total_custo_envio}}0</li>
-                            <li>Custo Aproveitamento retorno (-) R$ {{=projeto.total_custo_aprov_retorno}}0</li>
-                             <li>Custo Aproveitamento devolução (-) R$ {{=projeto.total_custo_aprov_devolucao}}0</li>
+                            <li>Custo de Envio (+) R$ {{="{:,}".format(round(projeto.total_custo_envio,2)).replace(",",".")}}0</li>
+                            <li>Custo Aproveitamento retorno (-) R$ {{="{:,}".format(round(projeto.total_custo_aprov_retorno,2)).replace(",",".")}}0</li>
+                             <li>Custo Aproveitamento devolução (-) R$ {{="{:,}".format(round(projeto.total_custo_aprov_devolucao,2)).replace(",",".")}}0</li>
                           </ol>
                       <hr>
                         
-                        {{venda=projeto.total_vale_saida_vendedor+projeto.total_recebido_chegada_venda_vendedor}}
-                        {{chefia=projeto.vale_saida_chefe+projeto.recebido_chegada_venda}}
-                        {{cobrador=projeto.vale_cobrador+projeto.recebido_chegada_cobrac}}
+                        {{venda=projeto.total_vale_saida_vendedor+projeto.total_recebido_chegada_venda_vendedor+projeto.total_vale_caderno_vendedor+projeto.total_recebido_chegada_cobranca_vendedor}}
+                        
+                        
+                        {{chefia=projeto.vale_saida_chefe+projeto.recebido_chegada_venda+projeto.diferenca_chefe+projeto.recebido_chegada_cobrac}}
+                        {{cobrador=projeto.vale_cobrador+projeto.recebido_chegada_cobrac+projeto.diferenca_cobrador}}
                         {{comissao=venda+chefia+cobrador}}
                         {{lucrobruto-=comissao}}
-                        <li>(-) Comissões = <b>R$ {{=comissao}}0</b></li>
+                        <li>(-) Comissões = <b>R$ {{="{:,}".format(round(comissao,2)).replace(",",".")}}0</b></li>
                         <ol>
-                            <li>(+) Venda R$ {{=venda}}0</li>
+                            <li>(+) Venda R$ {{="{:,}".format(round(venda,2)).replace(",",".")}}0</li>
                             <ol>
-                                <li>Vale (+) R$ {{=projeto.total_vale_saida_vendedor}}0</li>
-                                <li>Recebido na Chegada (+) R$ {{=projeto.total_recebido_chegada_venda_vendedor}}0</li> <hr>
+                                <li>Vale (+) R$ {{="{:,}".format(round(projeto.total_vale_saida_vendedor,2)).replace(",",".")}}0</li>
+                                <li>Vale da Viagem (+) R$ {{="{:,}".format(round(projeto.total_vale_caderno_vendedor,2)).replace(",",".")}}0</li>
+                                <li>Recebido na Chegada (Venda) (+) R$ {{="{:,}".format(round(projeto.total_recebido_chegada_venda_vendedor,2)).replace(",",".")}}0</li> 
+                                <li>Recebido na Chegada (Cobrança) (+) R$ {{="{:,}".format(round(projeto.total_recebido_chegada_cobranca_vendedor,2)).replace(",",".")}}0</li>
+                                <hr>
                             </ol>
-                            <li>(+) Chefia R$ {{=chefia}}0</li>
+                            <li>(+) Chefia R$ {{="{:,}".format(round(chefia,2)).replace(",",".")}}0</li>
                             <ol>
-                                <li>Vale (+) R$ {{=projeto.vale_saida_chefe}}0</li>
-                                <li>Recebido na Chegada (+) R$ {{=projeto.recebido_chegada_venda}}0</li> <hr>
+                                <li>Vale (+) R$ {{="{:,}".format(round(projeto.vale_saida_chefe,2)).replace(",",".")}}0</li>
+                                <li>Diferênça da Prestação (+) R$ {{="{:,}".format(round(projeto.diferenca_chefe,2)).replace(",",".")}}0</li>
+                                <li>Recebido na Chegada (Venda) R$ {{="{:,}".format(round(projeto.recebido_chegada_venda,2)).replace(",",".")}}0</li> 
+                                <li>Recebido na Chegada (Cobrança) R$ {{="{:,}".format(round(projeto.recebido_chegada_cobrac,2)).replace(",",".")}}0</li>
+                                <hr>
                             </ol>
-                            <li>(+) Cobrança R$ {{=cobrador}}0</li>
+                            <li>(+) Cobrança R$ {{="{:,}".format(round(cobrador,2)).replace(",",".")}}0</li>
                             <ol>
-                                <li>Vale (+) R$ {{=projeto.vale_cobrador}}0</li>
-                                <li>Recebido na Chegada (+) R$ {{=projeto.recebido_chegada_cobrac}}0</li> <hr>
+                                <li>Vale (+) R$ {{="{:,}".format(round(projeto.vale_cobrador,2)).replace(",",".")}}0</li>
+                                <li>Diferênça da Prestação (+) R$ {{="{:,}".format(round(projeto.diferenca_cobrador,2)).replace(",",".")}}0</li>
+                                <li>Recebido na Chegada (+) R$ {{="{:,}".format(round(projeto.recebido_chegada_cobrac,2)).replace(",",".")}}0</li> <hr>
                             </ol>
                             
                           </ol>
                       <hr>
                         {{if lucrobruto>0:}}
-                      <p>(=) Lucro Bruto = <b>R$ {{=lucrobruto}}</b></p>
+                      <p>(=) Lucro Bruto = <b>R$ {{="{:,}".format(round(lucrobruto,2)).replace(",",".")}}0</b></p>
                         {{else:}}
-                        <p class="text-danger">(=) Valor Empregado s/ despesas = <b>R$ {{=lucrobruto}}</b></p>
+                        <p class="text-danger">(=) Valor Empregado s/ despesas = <b>R$ {{="{:,}".format(round(lucrobruto,2)).replace(",",".")}}0</b></p>
                         {{pass}}
                         {{lucroliquido=lucrobruto}}
                     </ol>
@@ -80,26 +103,27 @@
                   <div class="col-md-5">
                        <p>Despesas do Projeto</p>
                       {{despesas=projeto.total_valor_depesa_local+projeto.total_valor_depesa_venda+projeto.total_valor_depesa_cobranca}}
-                      {{funcionario=projeto.total_vale_saida_funcionario+projeto.total_recebido_chegada_funcionario}}
+                      {{funcionario=projeto.total_vale_saida_funcionario+projeto.total_recebido_chegada_funcionario+projeto.total_vale_caderno_funcionario}}
                       {{despesas+=funcionario}}
                       {{lucroliquido-=despesas}}
                       <ol>
-                          <li>(-) Total das Despesas = <b>R$ {{=despesas}}</b></li>
+                          <li>(-) Total das Despesas = <b>R$ {{="{:,}".format(round(despesas,2)).replace(",",".")}}0</b></li>
                     <ol>
-                      <li>Despesa Local (+) {{=projeto.total_valor_depesa_local}}<b></b></li>
-                        <li>Despesa Venda (+) {{=projeto.total_valor_depesa_venda}}<b></b></li>
-                        <li>Despesa Cobrança (+) {{=projeto.total_valor_depesa_cobranca}}<b></b></li> <hr>
-                      <li>Funcionarios (+) R$ {{=funcionario}}</li>
+                      <li>Despesa Local (+) R$ {{="{:,}".format(round(projeto.total_valor_depesa_local,2)).replace(",",".")}}0<b></b></li>
+                        <li>Despesa Venda (+) R$ {{="{:,}".format(round(projeto.total_valor_depesa_venda,2)).replace(",",".")}}0<b></b></li>
+                        <li>Despesa Cobrança (+) R$ {{="{:,}".format(round(projeto.total_valor_depesa_cobranca,2)).replace(",",".")}}0<b></b></li> <hr>
+                        <li>Funcionarios (+) R$ {{="{:,}".format(round(funcionario,2)).replace(",",".")}}0</li>
                             <ol>
-                                <li>Vale R$ {{=projeto.total_vale_saida_funcionario}}</li>
-                                <li>Recebido na Chegada R$ {{=projeto.total_recebido_chegada_funcionario}}0</li>
+                                <li>Vale R$ {{="{:,}".format(round(projeto.total_vale_saida_funcionario,2)).replace(",",".")}}0</li>
+                                <li>Vale Caderno R$ {{="{:,}".format(round(projeto.total_vale_caderno_funcionario,2)).replace(",",".")}}0</li>
+                                <li>Recebido na Chegada R$ {{="{:,}".format(round(projeto.total_recebido_chegada_funcionario,2)).replace(",",".")}}0</li>
                             </ol>
                     </ol>
                       </ol>
                       {{if lucrobruto>0:}}
-                      <p>(=) Lucro Liquido = <b>R$ {{=lucroliquido}}</b></p>
+                      <p>(=) Lucro Liquido = <b>R$ {{="{:,}".format(round(lucroliquido,2)).replace(",",".")}}0</b></p>
                         {{else:}}
-                        <p class="text-danger">(=) Valor Empregado c/ despesas = <b>R$ {{=lucroliquido}}</b></p>
+                        <p class="text-danger">(=) Valor Empregado c/ despesas = <b>R$ {{="{:,}".format(round(lucroliquido,2)).replace(",",".")}}0</b></p>
                         {{pass}}
                   </div>
                 </div>

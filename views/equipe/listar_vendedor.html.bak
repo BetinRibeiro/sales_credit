@@ -18,29 +18,34 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12">
-		<p>Equipe de Vendas {{=projeto.nome_chefe}}</p>
+		<p>Equipe de Vendas - {{=projeto.nome_chefe}}</p>
 		
 		<a class="btn btn-primary" href="{{=URL('inserir_vendedor', args=projeto.id)}}">Inserir Vendedor</a><br><br>
 <div class="table-responsive">
 <table class="table table-striped table-borderless">
             <thead>
               <tr>
+                  <th>#</th>
                 <th>Nome</th>
                 <th>Vale</th>
               </tr>
             </thead>
             <tbody>
+                {{q=1}}
 				{{a=0.0}}
 				{{for row in rows:}}
               <tr>
-                <th><a href="{{=URL('alterar_vendedor', args=row.id)}}">{{=row.nome_vendedor}}</a></th>
-				<th>{{=row.vale_saida}}</th>
+                  <td>{{=q}}</td>
+                <td><a href="{{=URL('alterar_vendedor', args=row.id)}}">{{=row.nome_vendedor}}</a></td>
+				<td>R$ {{=row.vale_saida}}0</td>
 				  {{a=a+row.vale_saida}}
+                      {{q+=1}}
               </tr>
               {{pass}}
 				 <tr>
+                <th>#</th>
                 <th>Total</th>
-				<th>{{=a}}</th>
+				<th>R$ {{=a}}0</th>
               </tr>
             </tbody>
           </table>

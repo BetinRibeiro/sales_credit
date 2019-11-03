@@ -24,31 +24,31 @@
                       <p>Capital Empregado</p>
                       
                       <ol>{{investimento=0}}
-                          <li>Custo Total da Compra = <b>R$ {{=projeto.total_custo_envio}}0</b></li>
+                          <li>Custo Total da Compra = <b>R$ {{="{:,}".format(round(projeto.total_custo_envio,2)).replace(",",".")}}0</b></li>
                           <hr>{{investimento+=projeto.total_custo_envio}}
-                          <li>Vendedores e Vales = <b>R$ {{=projeto.total_vale_saida_vendedor+projeto.total_recebido_chegada_venda_vendedor}}0</b></li>
-                          <ol>{{investimento+=projeto.total_vale_saida_vendedor+projeto.total_recebido_chegada_venda_vendedor}}
-                              <li>Vale da Saida - R$ {{=projeto.total_vale_saida_vendedor}}0</li>
-                              <li>Recebido na Chegada - R$ {{=projeto.total_recebido_chegada_venda_vendedor}}0</li>
+                          <li>Vendedores e Vales = <b>R$ {{="{:,}".format(round(projeto.total_vale_saida_vendedor+projeto.total_recebido_chegada_venda_vendedor,2)).replace(",",".")}}0</b></li>
+                          <ol class="list-unstyled">{{investimento+=projeto.total_vale_saida_vendedor+projeto.total_recebido_chegada_venda_vendedor}}
+                              <li>R$ {{="{:,}".format(round(projeto.total_vale_saida_vendedor,2)).replace(",",".")}}0 Vale da Saida</li>
+                              <li>R$ {{="{:,}".format(round(projeto.total_recebido_chegada_venda_vendedor,2)).replace(",",".")}}0 Recebido na Chegada </li>
                           </ol>
                           <hr>{{investimento+=projeto.vale_saida_chefe+projeto.recebido_chegada_venda}}
-                          <li>Chefe e vale = <b>R$ {{=projeto.vale_saida_chefe+projeto.recebido_chegada_venda}}0</b></li>
-                          <ol>
-                            <li>Vale da Saida - R$ {{=projeto.vale_saida_chefe}}0</li>
-                            <li>Recebido na Chegada - R$ {{=projeto.recebido_chegada_venda}}0</li>
+                          <li>Chefe e vale = <b>R$ {{="{:,}".format(round(projeto.vale_saida_chefe+projeto.recebido_chegada_venda,2)).replace(",",".")}}0</b></li>
+                          <ol class="list-unstyled">
+                            <li>R$ {{="{:,}".format(round(projeto.vale_saida_chefe,2)).replace(",",".")}}0 Vale da Saida</li>
+                            <li>R$ {{="{:,}".format(round(projeto.recebido_chegada_venda,2)).replace(",",".")}}0 Recebido na Chegada</li>
                           </ol>
                           <hr>{{investimento+=projeto.total_vale_saida_funcionario+projeto.total_recebido_chegada_funcionario}}
-                          <li>Funcionarios e Vales = <b>R$ {{=projeto.total_vale_saida_funcionario+projeto.total_recebido_chegada_funcionario}}0</b></li>
-                          <ol>
-                              <li>Vale da Saida - R$ {{=projeto.total_vale_saida_funcionario}}</li>
-                               <li>Recebido na Chegada - R$ {{=projeto.total_recebido_chegada_funcionario}}0</li>
+                          <li>Funcionarios e Vales = <b>R$ {{="{:,}".format(round(projeto.total_vale_saida_funcionario+projeto.total_recebido_chegada_funcionario,2)).replace(",",".")}}0</b></li>
+                          <ol class="list-unstyled">
+                              <li>R$ {{="{:,}".format(round(projeto.total_vale_saida_funcionario,2)).replace(",",".")}}0 Vale da Saida</li>
+                              <li>R$ {{="{:,}".format(round(projeto.total_recebido_chegada_funcionario,2)).replace(",",".")}}0 Recebido na Chegada</li>
                           </ol><hr>{{investimento+=projeto.total_valor_depesa_local}}
-                         <li>Despesa Local = <b>R$ {{=projeto.total_valor_depesa_local}}0</b></li>
+                         <li>Despesa Local = <b>R$ {{="{:,}".format(round(projeto.total_valor_depesa_local,2)).replace(",",".")}}0</b></li>
                           <hr>{{investimento+=projeto.adiantamento_dinh_venda}}
-                          <li>Dinheiro Emprestado para Venda = <b>R$ {{=projeto.adiantamento_dinh_venda}}0</b></li>
+                          <li>Dinheiro Emprestado para Venda = <b>R$ {{="{:,}".format(round(projeto.adiantamento_dinh_venda,2)).replace(",",".")}}0</b></li>
                           <hr>
                           <p>
-                             Valor Total Empregado  <b>R$ {{=investimento}}0</b>
+                             <b>Valor Total Empregado = R$ {{="{:,}".format(round(investimento,2)).replace(",",".")}}0</b>
                           </p>
                       </ol>
                       <br><br><br>
@@ -59,28 +59,26 @@
                           Previa de lucros e estimativa
                       </p>
                     <ol>
-                      <li class="text-primary">Total da Venda = <b>R$ {{=projeto.total_venda}}0</b></li>
-                      <li>Valor Total Empregado = <b>R$ {{=investimento}}0</b></li>
+                      <li class="text-primary">Total da Venda = <b>R$ {{="{:,}".format(round(projeto.total_venda,2)).replace(",",".")}}0</b></li>
+                      <li>Valor Total Empregado = <b>R$ {{="{:,}".format(round(investimento,2)).replace(",",".")}}0</b></li>
                     </ol>
                       <hr>
                     <p>
                         Estimativa
                       </p>
                     <ol>
-                      <p><b>R$ {{=investimento}}0</b> - Valor Total Empregado</p>
-                      <p><b>R$ {{=projeto.total_valor_deposito}}0</b> - Total Deposito </p>
+                      <p><b>R$ {{="{:,}".format(round(investimento,2)).replace(",",".")}}0</b> - Valor Total Empregado</p>
+                      <p><b>R$ {{="{:,}".format(round(projeto.total_valor_deposito,2)).replace(",",".")}}0</b> - Total Deposito </p>
                         {{lucro=projeto.total_valor_deposito-investimento}}
                         {{if lucro>0:}}
-                        <p class="text-primary"><b>R$ {{=lucro}}0</b> - Estimativa de Lucro </p>
+                        <p class="text-primary"><b>R$ {{="{:,}".format(round(lucro,2)).replace(",",".")}}0</b> - Estimativa de Lucro </p>
                         {{else:}}
-                        <p class="text-danger"><b>R$ {{=lucro}}0</b> - Valor que Falta </p>
+                        <p class="text-danger">R$ {{="{:,}".format(round(lucro,2)).replace(",",".")}}0</b> - Valor que Falta </p>
                         {{pass}}
                       
                     </ol>
                       <hr>
-                    <div class="active progress progress-striped">
-                      <div class="progress-bar progress-bar-success" role="progressbar" style="width: 60%;">60% Complete</div>
-                    </div>
+                   
                   </div>
                 </div>
               </div>

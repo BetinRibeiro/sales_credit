@@ -17,7 +17,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12">
-<p>Lista Mercadoria de retorno {{=projeto.nome_chefe}}</p>
+<p>Lista Mercadoria de Retorno da Venda {{=projeto.nome_chefe}}</p>
 
 <div class="table-responsive">
   <table class="table table-striped table-borderless">
@@ -42,19 +42,19 @@
 				{{for row in rows:}}
               <tr>
 
-                <th>{{=row.quant_pcs_retorno}}</th>
-                  <th><a href="{{=URL('alterar_merc_retorno', args=row.id)}}">{{=row.descricao}}</a></th>
-				<th>{{=row.preco_unitario}}0</th>
+                <td>{{=row.quant_pcs_retorno}}</td>
+                  <td><a href="{{=URL('alterar_merc_retorno', args=row.id)}}">{{=row.descricao}}</a></td>
+				<td>R$ {{="{:,}".format(row.preco_unitario).replace(",",".")}}0</td>
                   
                     {{vr=row.quant_pcs_retorno*row.preco_unitario}}
                   
-				<th>{{=vr}}0</th>
+				<td>R$ {{="{:,}".format(vr).replace(",",".")}}0</td>
                   
-				<th>{{=row.quant_pcs_aprov_retorno}}0</th>
+				<td>R$ {{="{:,}".format(row.quant_pcs_aprov_retorno).replace(",",".")}}0</td>
                   
                     {{vc=row.quant_pcs_aprov_retorno*row.custo_unitario}}
                   
-				<th>{{=vc}}0</th>
+				<td>R$ {{="{:,}".format(vc).replace(",",".")}}0</td>
                     {{custo_ret=(row.quant_pcs_retorno*row.custo_unitario)}}
                     {{total_custo_retorno+=custo_ret}}
                     {{total_preco_retorno=total_preco_retorno+vr}}
@@ -64,12 +64,12 @@
               {{pass}}
 				 <tr>
 
-                <th>{{= quant_retorno }}0</th>
+                <th>{{= quant_retorno}}</th>
 				<th>Total</th>
 				<th>--></th>
-				<th>{{=total_preco_retorno}}0</th>
+				<th>R$ {{="{:,}".format(total_preco_retorno).replace(",",".")}}0</th>
 					 <th>--></th>
-				<th>{{=total_preco_aproveitamento}}0</th>
+				<th>R$ {{="{:,}".format(total_preco_aproveitamento).replace(",",".")}}0</th>
 
               </tr>
             </tbody>

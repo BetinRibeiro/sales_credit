@@ -5,6 +5,7 @@ def listar_vendedor():
     rows = db(db.vendedor.projeto == request.args(0, cast=int)).select()
     return locals()
 
+@auth.requires_membership('Administrador')
 def inserir_vendedor():
     proj = db.projeto(request.args(0, cast=int))
     db.vendedor.projeto.default = proj.id
@@ -30,6 +31,7 @@ def inserir_vendedor():
     return locals()
 
 
+@auth.requires_membership('Administrador')
 def inserir_funcionario():
     proj = db.projeto(request.args(0, cast=int))
     db.funcionario.projeto.default = proj.id
@@ -48,6 +50,7 @@ def inserir_funcionario():
         response.flash = 'Preencha o formulario'
     return locals()
 
+@auth.requires_membership('Administrador')
 def alterar_vendedor():
     merc = db.vendedor(request.args(0, cast=int))
     proj = db.projeto(merc.projeto)
@@ -76,6 +79,7 @@ def alterar_vendedor():
     return locals()
 
 
+@auth.requires_membership('Administrador')
 def alterar_funcionaro():
     merc = db.funcionario(request.args(0, cast=int))
     proj = db.projeto(merc.projeto)
@@ -96,6 +100,7 @@ def alterar_funcionaro():
     return locals()
 
 
+@auth.requires_membership('Administrador')
 def alterar_vendedor_venda():
     merc = db.vendedor(request.args(0, cast=int))
     proj = db.projeto(merc.projeto)
@@ -149,6 +154,7 @@ def listar_func_venda():
     rows = db(db.funcionario.projeto == request.args(0, cast=int)).select()
     return locals()
 
+@auth.requires_membership('Administrador')
 def alterar_vendedor_cobranca():
     merc = db.vendedor(request.args(0, cast=int))
     proj = db.projeto(merc.projeto)

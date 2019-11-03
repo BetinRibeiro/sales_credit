@@ -42,19 +42,19 @@
 				{{for row in rows:}}
               <tr>
 
-                <th>{{=row.quant_pcs_retorno}}</th>
-                  <th><a href="{{=URL('alterar_merc_retorno', args=row.id)}}">{{=row.descricao}}</a></th>
-				<th>{{=row.preco_unitario}}</th>
+                <td>{{=row.quant_pcs_retorno}}</td>
+                  <td><a href="{{=URL('alterar_merc_retorno', args=row.id)}}">{{=row.descricao}}</a></td>
+				<td>R$ {{="{:,}".format(row.preco_unitario).replace(",",".")}}0</td>
                   
                     {{vr=row.quant_pcs_retorno*row.preco_unitario}}
                   
-				<th>{{=vr}}</th>
+				<td>R$ {{="{:,}".format(vr).replace(",",".")}}0</td>
                   
-				<th>{{=row.quant_pcs_aprov_retorno}}</th>
+				<td>R$ {{="{:,}".format(row.quant_pcs_aprov_retorno).replace(",",".")}}0</td>
                   
                     {{vc=row.quant_pcs_aprov_retorno*row.custo_unitario}}
                   
-				<th>{{=vc}}</th>
+				<td>R$ {{="{:,}".format(vc).replace(",",".")}}0</td>
                     {{custo_ret=(row.quant_pcs_retorno*row.custo_unitario)}}
                     {{total_custo_retorno+=custo_ret}}
                     {{total_preco_retorno=total_preco_retorno+vr}}
@@ -64,12 +64,12 @@
               {{pass}}
 				 <tr>
 
-                <th>{{= quant_retorno }}</th>
+                <th>{{= quant_retorno}}</th>
 				<th>Total</th>
 				<th>--></th>
-				<th>{{=total_preco_retorno}}</th>
+				<th>R$ {{="{:,}".format(total_preco_retorno).replace(",",".")}}0</th>
 					 <th>--></th>
-				<th>{{=total_preco_aproveitamento}}</th>
+				<th>R$ {{="{:,}".format(total_preco_aproveitamento).replace(",",".")}}0</th>
 
               </tr>
             </tbody>

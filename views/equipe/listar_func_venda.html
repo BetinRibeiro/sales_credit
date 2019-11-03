@@ -13,12 +13,12 @@
         </ul>
       </div>
     </div>
-  </nav><br><br>
+  </nav>
 <div class="section">
       <div class="container">
         <div class="row">
           <div class="col-md-12">
-		<p>Lista Funcionarios - {{=projeto.nome_chefe}}</p>
+		<p>Lista Funcionários da venda de {{=projeto.nome_chefe}}</p>
 		<a class="btn btn-primary" href="{{=URL('inserir_funcionario', args=projeto.id)}}">Inserir Funcionario</a><br><br>
 <div class="table-responsive">
 <table class="table table-striped table-borderless">
@@ -26,7 +26,7 @@
               <tr>
                 <th>Nome</th>
                   <th>Função</th>
-                  <th>Salario</th>
+                  <th>Salário</th>
                 <th>Vale</th>
                   <th>Caderno</th>
                       <th>Saldo</th>
@@ -40,13 +40,13 @@
                 {{rec_chegada=0.0}}
 				{{for row in rows:}}
               <tr>
-                <th><a href="{{=URL('alterar_funcionaro', args=row.id)}}">{{=row.nome_funcionario}}</a></th>
-				<th>{{=row.funcao}}</th>
-                  <th>{{=row.salario_funcionario}}</th>
-                  <th>{{=row.vale_saida_funcionario}}</th>
-                  <th>{{=row.vale_caderno_funcionario}}</th>
-                  <th>{{=row.salario_funcionario-row.vale_saida_funcionario-row.vale_caderno_funcionario}}</th>
-                  <th>{{=row.valor_recebido_chegada}}</th>
+                <td><a href="{{=URL('alterar_funcionaro', args=row.id)}}">{{=row.nome_funcionario}}</a></td>
+				<td>{{=row.funcao}}</td>
+                  <td>R$ {{="{:,}".format(round(row.salario_funcionario,2)).replace(",",".")}}0</td>
+                  <td>R$ {{="{:,}".format(round(row.vale_saida_funcionario,2)).replace(",",".")}}0</td>
+                  <td>R$ {{="{:,}".format(round(row.vale_caderno_funcionario,2)).replace(",",".")}}0</td>
+                  <td>R$ {{="{:,}".format(round(row.salario_funcionario-row.vale_saida_funcionario-row.vale_caderno_funcionario,2)).replace(",",".")}}0</td>
+                  <td>R$ {{="{:,}".format(round(row.valor_recebido_chegada,2)).replace(",",".")}}0</td>
 				{{salario+=row.salario_funcionario}}
                 {{vale+=row.vale_saida_funcionario}}
                 {{caderno+=row.vale_caderno_funcionario}}
@@ -56,11 +56,11 @@
 				 <tr>
                 <th>Total</th>
                         <th>-></th>
-				<th>{{=salario}}</th>
-                     <th>{{=vale}}</th>
-                     <th>{{=caderno}}</th>
+				<th>R$ {{="{:,}".format(round(salario,2)).replace(",",".")}}0</th>
+                     <th>R$ {{="{:,}".format(round(vale,2)).replace(",",".")}}0</th>
+                     <th>R$ {{="{:,}".format(round(caderno,2)).replace(",",".")}}0</th>
                      <th>-></th>
-                     <th>{{=rec_chegada}}</th>
+                     <th>R$ {{="{:,}".format(round(rec_chegada,2)).replace(",",".")}}0</th>
               </tr>
             </tbody>
           </table>
